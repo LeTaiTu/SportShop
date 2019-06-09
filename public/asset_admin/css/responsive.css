@@ -1,0 +1,186 @@
+@media (min-width: 1200px) {
+    .container {
+        width: 1200px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #myNavbar {
+        display: block;
+    }
+    .top2 ul li {
+        display: inline-block;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
+    .top2 ul li a {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    #search input {
+        width: 230px;
+    }
+    #search button {
+        position: absolute;
+        right: 11px;
+        top: 8px;
+    }
+    .hotline {
+        left: 415px;
+    }
+    .cart {
+        left: 600px;
+    }
+    .card {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    #myNavbar {
+        display: none;
+    }
+    .top2 ul li {
+        display: block;
+        max-width: 100%;
+        border-bottom: solid 1px gray;
+        margin-left: 0px;
+        margin-right: 0px;
+        border-left: none;
+        border-right: none;
+    }
+    .top2 ul li a {
+        line-height: 51px;
+        margin-left: 20px;
+        margin-right: 25px;
+    }
+    #slide_index .carousel-inner img {
+        width: 100%;
+        height: auto;
+    }
+    #images_slide_index .image {
+        padding-right: 15px;
+        margin-bottom: 15px;
+    }
+    #images_slide_index img {
+        width: 100%;
+        height: auto;
+    }
+    .card {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .card_text {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    #ship_hotline_payment .item img {
+        left: 15px;
+    }
+    .content {
+        left: 75px;
+    }
+    .note {
+        left: 75px;
+    }
+    .top1 {
+        height: 140px;
+    }
+    .hotline {
+        top: 70px;
+        left: 100px;
+    }
+    .cart {
+        top: 70px;
+        left: 350px;
+    }
+    .login {
+        right: 80px;
+        top: 28px;
+    }
+    .register {
+        right: 0px;
+        top: 28px;
+    }
+    #search input {
+        width: 375px;
+    }
+    #menu_bar {
+        bottom: 8px;
+        right: 0px;
+        display: block;
+    }
+    .item_cart {
+        padding-right: 0px;
+    }
+    .item_cart .img {
+        width: 100%;
+    }
+    .cart_price {
+        text-align: left;
+    }
+    .cart_discount {
+        text-align: left;
+    }
+    .content_item_cart {
+        padding: 0 15px;
+    }
+    .content_item_cart ul li:first-of-type {
+        margin-right: 20px;
+    }
+    .group_promotion_1 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .group_promotion_2 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .img_group {
+        height: auto;
+    }
+    .group_content {
+        padding: 0;
+    }
+    .news_content {
+        padding: 0 15px;
+    }
+    .payment {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hotline {
+        display: none;
+    }
+    .cart {
+        top: 70px;
+        right: 15px;
+        left: auto;
+    }
+    .login {
+        right: 150px;
+        top: 28px;
+    }
+    .register {
+        right: 70px;
+        top: 28px;
+    }
+    #search {
+        top: 81px;
+        left: 15px;
+    }
+    #search input {
+        width: 200px;
+    }
+    #menu_bar {
+        bottom: 75px;
+        right: 0px;
+        display: block;
+    }
+    .name_phone input {
+        width: 130px;
+    }
+}
