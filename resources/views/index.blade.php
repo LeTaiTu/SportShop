@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>SHOP SPORT</title>
+    <title> SHOP SPORT</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{asset('asset_admin/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('asset_admin/css/font.css')}}">
     <link rel="stylesheet" href="{{asset('asset_admin/css/product_details.css')}}">
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="icon" type="image/png" href="{{asset('asset_admin/images/logo.png')}}">
 </head>
 
 <body>
@@ -1726,11 +1726,11 @@
             </div>
         </div>
         <div id="copyright">
-            <p>Bản quyền 2018 thuộc về ATAT</p>
-            <p>Cơ quan chủ quản: Trường cao đẳng nghề bách khoa Hà Nội</p>
-            <p>Địa chỉ: 92A Lê Thanh Nghị - Hai Bà Trưng - Hà Nội</p>
+            <p>Bản quyền 2018 thuộc về ITPlus</p>
+            
+            <p>Địa chỉ: 51 Lê Đại Hành - Hoàn Kiếm - Hà Nội</p>
             <p>Điện thoại/Fax: 0966142240</p>
-            <p>Người chịu trách nhiệm nội dung: ATAT</p>
+            <p>Người chịu trách nhiệm nội dung: TĐT</p>
         </div>
     </footer>
     <script src="{{asset('asset_admin/js/owl.carousel.min.js')}}"></script>
