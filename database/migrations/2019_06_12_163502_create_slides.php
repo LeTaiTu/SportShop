@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSlice extends Migration
+class CreateSlides extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSlice extends Migration
      */
     public function up()
     {
-        Schema::create('slice', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("name_slide", 150)->nullable();
-            $table->tinyInteger("id_kind")->default(0)->nullable();
+            $table->integer("id_kind")->default(0)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateSlice extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slice');
+        Schema::dropIfExists('slides');
     }
 }
