@@ -13,7 +13,7 @@ class CreateAdmin extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("name", 150)->nullable(); // nullable cho phep rong
             $table->string("username", 50)->unique(); // khong cho phep trung
@@ -31,6 +31,6 @@ class CreateAdmin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('admins');
     }
 }

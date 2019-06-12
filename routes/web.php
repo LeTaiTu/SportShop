@@ -20,3 +20,8 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+Route::prefix('admin')->group(function() {
+	Route::get('/', "\App\Http\Controllers\Admins\LoginController@index");
+	Route::post('/', "\App\Http\Controllers\Admins\LoginController@store")->name('admin');
+});
