@@ -24,4 +24,5 @@ Route::get('/register', function () {
 Route::prefix('admin')->group(function() {
 	Route::get('/', "\App\Http\Controllers\Admins\LoginController@index");
 	Route::post('/', "\App\Http\Controllers\Admins\LoginController@store")->name('admin');
+	Route::get('/account',"\App\Http\Controllers\Admins\AccountController@index")->name('admin.account');
 });

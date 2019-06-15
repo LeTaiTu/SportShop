@@ -101,7 +101,7 @@
                             <a href="#"><i class="fa fa-home"></i>Trang chủ</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-book"></i>Quản lý Tài Khoản</a>
+                            <a href="{{route('admin.account')}}"><i class="fa fa-book"></i>Quản lý Tài Khoản</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-th"></i>Đơn hàng</a>
