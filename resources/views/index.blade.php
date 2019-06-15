@@ -26,7 +26,7 @@
     <header id="header">
         <div style="background: #000000;">
             <div class="container top1">
-                <a href=""><img id="logo" src="{{asset('asset_admin/images/logo.png')}}" alt="logo"></a>
+                <a href="{{route('home')}}"><img id="logo" src="{{asset('asset_admin/images/logo.png')}}" alt="logo"></a>
                 <form id="search">
                     <div class="form-group">
                         <input type="text" class="form-control" name="search">
@@ -56,7 +56,7 @@
             <div class="container top2">
                 <div id="myNavbar" class="row">
                     <ul>
-                        <li class="active_header"><a href=""><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
+                        <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
                         <li><a href=""> KHUYẾN MÃI</a></li>
                         <li><a href=""> QUẦN,ÁO,GIÀY...</a></li>
                         <li><a href=""> THỰC PHẨM PHỤC HỒI</a></li>

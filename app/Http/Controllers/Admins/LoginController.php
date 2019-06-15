@@ -42,9 +42,11 @@ class LoginController extends Controller
         foreach ($admin as $key => $value) {
             $user_data = $value->username;
             $pass_data = $value->password;
+            if (($username == $user_data) && ($password == $pass_data)) {
+                return view('admin.home');
+            }
         }
-        @dd($admin);
-        return view('admin.index');
+        return view('admin.login');
     }
 
     /**
