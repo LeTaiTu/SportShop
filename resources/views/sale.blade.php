@@ -1,5 +1,6 @@
 @extends('index')
 @section('content')
+<div id="content" class="container">
 	<div id="product_frame" class="row">
             <div class="category col-md12">
                 <a href="" class="promotion">KHUYẾN MÃI HOT NHẤT</a>
@@ -77,5 +78,5 @@
                 </div>
             </div>
         </div>
-
+</div>
 @endsection

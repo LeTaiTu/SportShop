@@ -57,12 +57,12 @@
                 <div id="myNavbar" class="row">
                     <ul>
                         <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
-                        <li><a href=""> KHUYẾN MÃI</a></li>
-                        <li><a href=""> QUẦN,ÁO,GIÀY...</a></li>
-                        <li><a href=""> THỰC PHẨM PHỤC HỒI</a></li>
-                        <li><a href=""> BÓNG</a></li>
-                        <li><a href=""> THỰC PHẨM CHỨC NĂNG</a></li>
-                        <li><a href=""> KÍNH BƠI</a></li>
+                        <li><a href="{{route('sale')}}"> KHUYẾN MÃI</a></li>
+                        <li><a href="{{route('quanao')}}"> QUẦN,ÁO,GIÀY...</a></li>
+                        <li><a href="{{route('phuchoi')}}"> THỰC PHẨM PHỤC HỒI</a></li>
+                        <li><a href="{{route('bong')}}"> BÓNG</a></li>
+                        <li><a href="{{route('chucnang')}}"> THỰC PHẨM CHỨC NĂNG</a></li>
+                        <li><a href="{{route('kinh')}}"> KÍNH BƠI</a></li>
                     </ul>
                 </div>
             </div>

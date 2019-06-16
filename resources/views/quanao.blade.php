@@ -1,5 +1,6 @@
 @extends('index')
 @section('content')
+<div id="content" class="container">
     <div id="product_frame" class="row">
             <div class="category col-md-12">
                 <ul>
@@ -726,4 +727,5 @@
                 </div>
             </div>
         </div>
+    </div>    
 @endsection

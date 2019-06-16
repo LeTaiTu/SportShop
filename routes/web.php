@@ -14,12 +14,37 @@
 Route::get('/', function () {
     return view('home.home');
 })->name('home');
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+Route::get('/sale', function () {
+    return view('sale');
+})->name('sale');
+
+Route::get('/quanao', function () {
+    return view('quanao');
+})->name('quanao');
+
+Route::get('/phuchoi', function () {
+    return view('phuchoi');
+})->name('phuchoi');
+
+Route::get('/bong', function () {
+    return view('bong');
+})->name('bong');
+
+Route::get('/chucnang', function () {
+    return view('chucnang');
+})->name('chucnang');
+
+Route::get('/kinh', function(){
+	return view('kinh');
+})->name('kinh');
 
 Route::prefix('admin')->group(function() {
 	Route::get('/', "\App\Http\Controllers\Admins\LoginController@index");
