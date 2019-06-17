@@ -63,6 +63,7 @@
                         <li><a href="{{route('bong')}}"> BÓNG</a></li>
                         <li><a href="{{route('chucnang')}}"> THỰC PHẨM CHỨC NĂNG</a></li>
                         <li><a href="{{route('kinh')}}"> KÍNH BƠI</a></li>
+                        <li><a href="{{route('contact')}}">LIÊN HỆ</a></li>
                     </ul>
                 </div>
             </div>

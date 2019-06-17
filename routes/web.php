@@ -45,6 +45,9 @@ Route::get('/chucnang', function () {
 Route::get('/kinh', function(){
 	return view('kinh');
 })->name('kinh');
+Route::get('/contact', function(){
+	return view('contact');
+})->name('contact');
 
 Route::prefix('admin')->group(function() {
 	Route::get('/', "\App\Http\Controllers\Admins\LoginController@index");
