@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use Session;
 
 class LoginController extends Controller
 {
@@ -36,14 +37,20 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+
         $username = $request->username;
         $password = $request->password;
         $admin = Admin::get();
         foreach ($admin as $key => $value) {
             $user_data = $value->username;
             $pass_data = $value->password;
+            $id_admin = $value->id;
+            //session('id_admin') = $id_admin;
+            $name_admin = $value->name;
+            //session('name_admin') = $name_admin;
+            $image_admin = $value->image;
             if (($username == $user_data) && ($password == $pass_data)) {
-                return view('admin.home');
+                return view('admin.home', compact('id_admin','name_admin', 'image_admin'));
             }
         }
         return view('admin.login');

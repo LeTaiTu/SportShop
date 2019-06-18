@@ -44,21 +44,21 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{asset('asset_admin/images/admin.png')}}" class="user-image" alt="User Image">
+                                    <img src="{{-- /storage/account/{{$image_admin}} --}}" class="user-image" alt="User Image">
                                     <span class="hidden-xs">Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="{{asset('asset_admin/images/admin.png')}}" class="img-circle" alt="User Image">
+                                        <img src="{{-- /storage/account/{{$image_admin}} --}}" class="img-circle" alt="User Image">
                                         <p>
-                                            Web Developer
+                                            Web Administrator
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Đổi mật khẩu</a>
+                                            <a href="" class="btn btn-default btn-flat">Đổi mật khẩu</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="" class="btn btn-default btn-flat">Đăng xuất</a>
@@ -77,10 +77,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="{{asset('asset_admin/images/admin.png')}}" class="img-circle" alt="User Image">
+                            <img src="{{-- /storage/account/{{$image_admin}} --}}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>ITPLUS</p>
+                            <p>Admin</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li>
-                            <a href="#"><i class="fa fa-home"></i>Trang chủ</a>
+                            <a href="{{route('admin.home')}}"><i class="fa fa-home"></i>Trang chủ</a>
                         </li>
                         <li>
                             <a href="{{route('admin.account')}}"><i class="fa fa-book"></i>Quản lý Tài Khoản</a>
