@@ -50,6 +50,9 @@ class LoginController extends Controller
             //session('name_admin') = $name_admin;
             $image_admin = $value->image;
             if (($username == $user_data) && ($password == $pass_data)) {
+                session(['name_admin' => $name_admin]);
+                session(['id_admin' => $id_admin]);
+                session(['image_admin' => $image_admin]);
                 return view('admin.home', compact('id_admin','name_admin', 'image_admin'));
             }
         }

@@ -92,6 +92,32 @@ class AccountController extends Controller
         return view('admin.accounts.edit', compact('account'));
     }
 
+    public function changepass($id)
+    {
+        $account = Admin::findOrFail($id);
+        return view('admin.accounts.changepass', compact('account'));
+    }
+
+    public function updatepass(Request $request, $id)
+    {
+        $rules = [
+                    'oldpassword' => 'required|max:191',
+                    'newpassword' => 'required|max:191'
+                    ];
+        $request->validate($rules);
+        $account = Admin::findOrFail($id);
+        $oldpassword = $request->oldpassword;
+        $newpassword = $request->newpassword;
+        if ($account->password == $oldpassword) {
+            $account->password = $newpassword;
+            $account->save();
+            return redirect('admin/account')->with('success', 'Cập Nhật Thành Công!');
+        }
+        else {
+            return redirect('admin/account/'.$id.'/changepass')->with('error', 'Sai Mật Khẩu Cũ!');
+        }
+        
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -66,5 +66,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/account/{id}/delete',"\App\Http\Controllers\Admins\AccountController@destroy")->name('account.delete');
     Route::get('/account/{id}/edit',"\App\Http\Controllers\Admins\AccountController@edit")->name('account.edit');
     Route::post('/account/{id}/edit',"\App\Http\Controllers\Admins\AccountController@update")->name('account.update');
+    // trang doi password admin
+    Route::get('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@changepass")->name('account.changepass');
+    Route::post('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@updatepass")->name('account.updatepass');
     
 });

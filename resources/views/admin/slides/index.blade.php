@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('content')
-    <h2 class="text-center" style="margin-bottom: 20px; font-weight: bold">Tạo Tài Khoản Quản Trị</h2>
+    <h2 class="text-center" style="margin-bottom: 20px; font-weight: bold">Tạo Slide Hình Ảnh Sản Phẩm</h2>
     @if(session()->has("success"))
 	<div class="alert alert-success">
 	    <ul>
@@ -27,11 +27,11 @@
 	</div>
 	@endif
 	<div class="col-md-3">
-        <a href="{{Route('account.create')}}" title="" class="btn btn-info" style="margin-bottom:20px; "><i class="fa fa-plus-circle" aria-hidden="true"></i>  Thêm</a>
-        <a href="{{Route('admin.account')}}" title="" class="btn btn-danger" style="margin-bottom:20px; ">Xem Tất Cả</a>
+        <a href="{{Route('slide.create')}}" title="" class="btn btn-info" style="margin-bottom:20px; "><i class="fa fa-plus-circle" aria-hidden="true"></i>  Thêm</a>
+        <a href="{{Route('admin.slide')}}" title="" class="btn btn-danger" style="margin-bottom:20px; ">Xem Tất Cả</a>
     </div>
     <div class="col-md-9">
-    	<form action="{{route('account.search')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
+    	<form action="{{route('slide.search')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
     		@csrf
     		<button type="submit" class="btn btn-info pull-right" id="btnsearch" name="btnsearch">Search</button>
         	<input type="text" class="form-control pull-right" style="width: 300px;" name="txtsearch" id="txtsearch" value="" placeholder="Enter keyword...">
@@ -56,19 +56,19 @@
         </thead>
         <tbody>
                   <!-- hien thi du lieu -->
-            @forelse($account as $acc)
+            @forelse($slide as $sl)
 	    	<tr>
-	    		<td style="text-align: center">{{$acc->id}}</td>
-	    		<td style="text-align: center">{{$acc->name}}</td>
-	    		<td style="text-align: center">{{$acc->username}}</td>
-	    		<td style="text-align: center">{{$acc->password}}</td>
-	    		<td style="text-align: center"><img src="{{filter_var($acc->image,FILTER_VALIDATE_URL) ? asset($acc->image) : asset('storage/account/'.$acc->image)}}" width="80px"></td>
-	    		<td style="text-align: center">{{$acc->active}}</td>
-	    		<td style="text-align: center">{{$acc->email}}</td>
-	    		<td style="text-align: center">{{$acc->created_at}}</td>
-	    		<td style="text-align: center">{{$acc->updated_at}}</td>
-	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('account.edit',$acc->id)}}">Sửa</a></td>
-	    		<td style="text-align: center"><a class="deleteAcc btn btn-danger" href="{{route('account.delete',$acc->id)}}">Xóa</a></td>
+	    		<td style="text-align: center">{{$sl->id}}</td>
+	    		<td style="text-align: center">{{$sl->name}}</td>
+	    		<td style="text-align: center">{{$sl->username}}</td>
+	    		<td style="text-align: center">{{$sl->password}}</td>
+	    		<td style="text-align: center"><img src="{{filter_var($sl->image,FILTER_VALIDATE_URL) ? asset($sl->image) : asset('storage/slide/'.$sl->image)}}" width="80px"></td>
+	    		<td style="text-align: center">{{$sl->active}}</td>
+	    		<td style="text-align: center">{{$sl->email}}</td>
+	    		<td style="text-align: center">{{$sl->created_at}}</td>
+	    		<td style="text-align: center">{{$sl->updated_at}}</td>
+	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('slide.edit',$sl->id)}}">Sửa</a></td>
+	    		<td style="text-align: center"><a class="deleteAcc btn btn-danger" href="{{route('slide.delete',$sl->id)}}">Xóa</a></td>
 	    	</tr>
 		    @empty
 		    	<tr>
@@ -79,7 +79,7 @@
     </table>
     <div class="col-md-12 text-center">
         <!-- paging -->
-        {{$account->links()}}
+        {{$slide->links()}}
     </div>
 	<script type="text/javascript">
 		$(document).ready(function() {
