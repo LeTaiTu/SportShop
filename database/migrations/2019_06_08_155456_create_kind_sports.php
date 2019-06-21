@@ -15,7 +15,7 @@ class CreateKindSports extends Migration
     {
         Schema::create('kind_sports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("tenloai");
+            $table->string("tenloai", 150)->nullable();
             $table->timestamps();
         });
     }

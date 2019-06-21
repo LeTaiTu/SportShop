@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('content')
-    <h2 class="text-center" style="margin-bottom: 20px; font-weight: bold">Tạo Loại Sản Phẩm</h2>
+    <h2 class="text-center" style="margin-bottom: 20px; font-weight: bold">Quản Lý Loại Sản Phẩm</h2>
     @if(session()->has("success"))
 	<div class="alert alert-success">
 	    <ul>
@@ -27,11 +27,11 @@
 	</div>
 	@endif
 	<div class="col-md-3">
-        <a href="{{Route('slide.create')}}" title="" class="btn btn-info" style="margin-bottom:20px; "><i class="fa fa-plus-circle" aria-hidden="true"></i>  Thêm</a>
-        <a href="{{Route('admin.slide')}}" title="" class="btn btn-danger" style="margin-bottom:20px; ">Xem Tất Cả</a>
+        <a href="{{Route('kindsport.create')}}" title="" class="btn btn-info" style="margin-bottom:20px; "><i class="fa fa-plus-circle" aria-hidden="true"></i>  Thêm</a>
+        <a href="{{Route('admin.kindsport')}}" title="" class="btn btn-danger" style="margin-bottom:20px; ">Xem Tất Cả</a>
     </div>
     <div class="col-md-9">
-    	<form action="{{route('slide.search')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
+    	<form action="{{route('kindsport.search')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
     		@csrf
     		<button type="submit" class="btn btn-info pull-right" id="btnsearch" name="btnsearch">Search</button>
         	<input type="text" class="form-control pull-right" style="width: 300px;" name="txtsearch" id="txtsearch" value="" placeholder="Enter keyword...">
@@ -42,12 +42,7 @@
         <thead>
             <tr >
                 <th style="text-align: center" >ID</th>
-				<th style="text-align: center" >Tên Tài Khoản</th>
-				<th style="text-align: center" >Username</th>
-				<th style="text-align: center" >Password</th>
-				<th style="text-align: center" >Hình Ảnh</th>
-				<th style="text-align: center" >Active</th>
-				<th style="text-align: center" >Email</th>
+				<th style="text-align: center" >Tên Loại</th>
 				<th style="text-align: center" >Ngày Tạo</th>
 				<th style="text-align: center" >Ngày Sửa</th>
                 <th style="text-align: center" colspan="2">Chức Năng</th>
@@ -56,19 +51,14 @@
         </thead>
         <tbody>
                   <!-- hien thi du lieu -->
-            @forelse($slide as $sl)
+            @forelse($kindsport as $ks)
 	    	<tr>
-	    		<td style="text-align: center">{{$sl->id}}</td>
-	    		<td style="text-align: center">{{$sl->name}}</td>
-	    		<td style="text-align: center">{{$sl->username}}</td>
-	    		<td style="text-align: center">{{$sl->password}}</td>
-	    		<td style="text-align: center"><img src="{{filter_var($sl->image,FILTER_VALIDATE_URL) ? asset($sl->image) : asset('storage/slide/'.$sl->image)}}" width="80px"></td>
-	    		<td style="text-align: center">{{$sl->active}}</td>
-	    		<td style="text-align: center">{{$sl->email}}</td>
-	    		<td style="text-align: center">{{$sl->created_at}}</td>
-	    		<td style="text-align: center">{{$sl->updated_at}}</td>
-	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('slide.edit',$sl->id)}}">Sửa</a></td>
-	    		<td style="text-align: center"><a class="deleteAcc btn btn-danger" href="{{route('slide.delete',$sl->id)}}">Xóa</a></td>
+	    		<td style="text-align: center">{{$ks->id}}</td>
+	    		<td style="text-align: center">{{$ks->tenloai}}</td>
+	    		<td style="text-align: center">{{$ks->created_at}}</td>
+	    		<td style="text-align: center">{{$ks->updated_at}}</td>
+	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('kindsport.edit',$ks->id)}}">Sửa</a></td>
+	    		<td style="text-align: center"><a class="deleteAcc btn btn-danger" href="{{route('kindsport.delete',$ks->id)}}">Xóa</a></td>
 	    	</tr>
 		    @empty
 		    	<tr>
@@ -79,7 +69,7 @@
     </table>
     <div class="col-md-12 text-center">
         <!-- paging -->
-        {{$slide->links()}}
+        {{$kindsport->links()}}
     </div>
 	<script type="text/javascript">
 		$(document).ready(function() {

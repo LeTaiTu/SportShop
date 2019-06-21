@@ -42,12 +42,9 @@
         <thead>
             <tr >
                 <th style="text-align: center" >ID</th>
-				<th style="text-align: center" >Tên Tài Khoản</th>
-				<th style="text-align: center" >Username</th>
-				<th style="text-align: center" >Password</th>
+				<th style="text-align: center" >Tên Slide Ảnh</th>
+				<th style="text-align: center" >Loại Sản Phẩm</th>
 				<th style="text-align: center" >Hình Ảnh</th>
-				<th style="text-align: center" >Active</th>
-				<th style="text-align: center" >Email</th>
 				<th style="text-align: center" >Ngày Tạo</th>
 				<th style="text-align: center" >Ngày Sửa</th>
                 <th style="text-align: center" colspan="2">Chức Năng</th>
@@ -59,12 +56,9 @@
             @forelse($slide as $sl)
 	    	<tr>
 	    		<td style="text-align: center">{{$sl->id}}</td>
-	    		<td style="text-align: center">{{$sl->name}}</td>
-	    		<td style="text-align: center">{{$sl->username}}</td>
-	    		<td style="text-align: center">{{$sl->password}}</td>
-	    		<td style="text-align: center"><img src="{{filter_var($sl->image,FILTER_VALIDATE_URL) ? asset($sl->image) : asset('storage/slide/'.$sl->image)}}" width="80px"></td>
-	    		<td style="text-align: center">{{$sl->active}}</td>
-	    		<td style="text-align: center">{{$sl->email}}</td>
+	    		<td style="text-align: center">{{$sl->name_slide}}</td>
+	    		<td style="text-align: center">{{$sl->id_kind}}</td>
+	    		<td style="text-align: center">{{$sl->image}}</td>
 	    		<td style="text-align: center">{{$sl->created_at}}</td>
 	    		<td style="text-align: center">{{$sl->updated_at}}</td>
 	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('slide.edit',$sl->id)}}">Sửa</a></td>

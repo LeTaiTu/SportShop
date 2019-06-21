@@ -69,5 +69,20 @@ Route::prefix('admin')->group(function() {
     // trang doi password admin
     Route::get('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@changepass")->name('account.changepass');
     Route::post('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@updatepass")->name('account.updatepass');
-    
+    // trang kindsport
+    Route::get('/kindsport',"\App\Http\Controllers\Admins\KindsportController@index")->name('admin.kindsport');
+    Route::post('/kindsport/search',"\App\Http\Controllers\Admins\KindsportController@search")->name('kindsport.search');
+    Route::get('/kindsport/create',"\App\Http\Controllers\Admins\KindsportController@create")->name('kindsport.create');
+    Route::post('/kindsport/create',"\App\Http\Controllers\Admins\KindsportController@store")->name('kindsport.store');
+    Route::get('/kindsport/{id}/delete',"\App\Http\Controllers\Admins\KindsportController@destroy")->name('kindsport.delete');
+    Route::get('/kindsport/{id}/edit',"\App\Http\Controllers\Admins\KindsportController@edit")->name('kindsport.edit');
+    Route::post('/account/{id}/edit',"\App\Http\Controllers\Admins\KindsportController@update")->name('kindsport.update');
+    // trang slide
+    Route::get('/slide',"\App\Http\Controllers\Admins\SlideController@index")->name('admin.slide');
+    Route::post('/slide/search',"\App\Http\Controllers\Admins\SlideController@search")->name('slide.search');
+    Route::get('/slide/create',"\App\Http\Controllers\Admins\SlideController@create")->name('slide.create');
+    Route::post('/slide/create',"\App\Http\Controllers\Admins\SlideController@store")->name('slide.store');
+    Route::get('/slide/{id}/delete',"\App\Http\Controllers\Admins\SlideController@destroy")->name('slide.delete');
+    Route::get('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@edit")->name('slide.edit');
+    Route::post('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@update")->name('slide.update');
 });
