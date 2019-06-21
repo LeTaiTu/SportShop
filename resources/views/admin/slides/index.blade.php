@@ -58,7 +58,7 @@
 	    		<td style="text-align: center">{{$sl->id}}</td>
 	    		<td style="text-align: center">{{$sl->name_slide}}</td>
 	    		<td style="text-align: center">{{$sl->id_kind}}</td>
-	    		<td style="text-align: center">{{$sl->image}}</td>
+	    		<td style="text-align: center"><img src="{{asset('/storage/slide/'.$sl->image)}} " width="80"></td>
 	    		<td style="text-align: center">{{$sl->created_at}}</td>
 	    		<td style="text-align: center">{{$sl->updated_at}}</td>
 	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('slide.edit',$sl->id)}}">Sửa</a></td>

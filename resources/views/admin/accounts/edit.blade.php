@@ -40,7 +40,6 @@
             <input type="file" name="image" class="form-control">
         </div>
     	<button class="btn btn-warning" type="submit">Cập Nhật</button>
-    	<button class="btn btn-info" type="reset">Nhập Lại</button>
     	<a class="btn btn-danger" href="{{route('admin.account')}}">Trở Lại</a>
     </form>
 

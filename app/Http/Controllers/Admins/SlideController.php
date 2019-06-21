@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
+use App\Models\Kind_sport;
 
 class SlideController extends Controller
 {
@@ -33,7 +34,8 @@ class SlideController extends Controller
      */
     public function create()
     {
-        return view('admin.slides.create');
+        $kindsport = Kind_sport::get();
+        return view('admin.slides.create',compact('kindsport'));
     }
 
     /**
@@ -44,7 +46,18 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = ['name_slide' => 'required|max:191',
+                    'id_kind' => 'numeric',
+                    'image' => 'image|max:2048'];
+        $request->validate($rules);
+        $slide = new Slide;
+        $file = $request->file('image');
+        $image = time()."-".$file->getClientOriginalName();
+        $file->storeAs('public/slide', $image);
+        $slide->fill($request->all());
+        $slide->image = $image;
+        $slide->save();
+        return redirect('admin/slide')->with('success', "Tạo Mới Thành Công!");
     }
 
     /**
@@ -66,7 +79,9 @@ class SlideController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slide = Slide::findOrFail($id);
+        $kindsport = Kind_sport::get();
+        return view('admin.slides.edit', compact('slide','kindsport'));
     }
 
     /**
@@ -78,7 +93,18 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = ['name_slide' => 'required|max:191',
+                    'id_kind' => 'numeric',
+                    'image' => 'image|max:2048'];
+        $request->validate($rules);
+        $slide = Slide::findOrFail($id);
+        $file = $request->file('image');
+        $image = time()."-".$file->getClientOriginalName();
+        $file->storeAs('public/slide', $image);
+        $slide->fill($request->all());
+        $slide->image = $image;
+        $slide->save();
+        return redirect('admin/slide')->with('success', "Cập Nhật Thành Công!");
     }
 
     /**
@@ -89,6 +115,8 @@ class SlideController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $slide = Slide::findOrFail($id);
+        $slide->delete();
+        return redirect('admin/slide')->with('success', "Xóa Thành Công!");
     }
 }
