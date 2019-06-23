@@ -104,6 +104,9 @@
                             <a href="{{route('admin.account')}}"><i class="fa fa-book"></i>Quản lý Tài Khoản</a>
                         </li>
                         <li>
+                            <a href="{{route('admin.product')}}"><i class="fa fa-book"></i>Quản lý sản phẩm</a>
+                        </li>
+                        <li>
                             <a href="{{route('admin.kindsport')}}"><i class="fa fa-book"></i>Loại Sản Phẩm</a>
                         </li>
                         <li>

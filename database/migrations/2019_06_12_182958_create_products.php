@@ -15,13 +15,10 @@ class CreateProducts extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_kind');
-            $table->integer('id_producer');
+            $table->integer('kind_sport_id');
+            $table->integer('producer_id');
             $table->string('name_pro', 150)->nullable();
             $table->string('image')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->integer('original_price')->nullable();
-            $table->integer('sell_price')->nullable();
             $table->string('content')->nullable();
             $table->integer('view')->default(0)->nullable();
             $table->timestamps();
