@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Auth;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Hash;
 class LoginController extends Controller
 {
     /*
@@ -25,8 +28,64 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
+    
 
+    public function login(Request $req) {
+        $rules = ['email' => 'required|email',
+                'password' => 'required|min:6|max:20',
+                ];
+
+        $message = ['email.required' => 'Vui lòng nhập email!',
+                    'email.email' => 'Email không đúng định dạng!',
+                    
+                    'password.required' => 'Vui lòng nhập password!',
+                    'password.min' => 'Mật khẩu từ 6 ký tự trở lên!',
+                    'password.max' => 'Mật khẩu nhỏ hơn 20 ký tự!',
+                    ];
+
+        $req->validate($rules,$message);
+        $credentials = array('email' => $req->email,
+                            'password' => $req->password);
+        //@dd($credentials);
+        if (Auth::attempt($credentials)) {
+            return redirect('/');
+        }
+        else {
+            return redirect()->back()->with('error', "Sai Email hoặc Mật Khẩu!");
+        }
+        
+    }
+
+    public function register(Request $request)
+    {
+        $rules = ['email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6|max:20',
+                're_password' => 'required|same:password'];
+
+        $message = ['email.required' => 'Vui lòng nhập email!',
+                    'email.email' => 'Email không đúng định dạng!',
+                    'email.unique' => 'Email không đã tồn tại!',
+                    'password.required' => 'Vui lòng nhập password!',
+                    'password.min' => 'Mật khẩu từ 6 ký tự trở lên!',
+                    'password.max' => 'Mật khẩu nhỏ hơn 20 ký tự!',
+                    're_password.required' => 'Vui lòng nhập lại mật khẩu',
+                    're_password.same' => 'Mật khẩu không khớp!'];
+
+        $request->validate($rules,$message);
+        $user = new User;
+
+        $user->fill($request->all());
+        $user->name = $request->last_name." ".$request->first_name;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect('/login_user')->with('success', "Bạn đã đăng ký thành công, vui lòng đăng nhập!");
+    }
+
+    public function logout(Request $request) {
+      Auth::logout();
+      return redirect('/');
+    }
     /**
      * Create a new controller instance.
      *

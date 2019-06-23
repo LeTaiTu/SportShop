@@ -45,8 +45,14 @@
                     <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">88</p>
                     <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;">Giỏ hàng</p>
                 </div>
-                <a class="login" href="{{route('login')}}" style="text-decoration: none;">ĐĂNG NHẬP</a>
-                <a class="register" href="{{route('register')}}" style="text-decoration: none;">ĐĂNG KÝ</a>
+                @if(Auth::check())
+                    <a class="login" href="" style="text-decoration: none;">Xin Chào {{Auth::user()->name}}</a>
+                    <a class="register" href="{{route('logout')}}" style="text-decoration: none;"> Đăng Xuất</a>
+                @else
+                    <a class="login" href="{{route('login.user')}}" style="text-decoration: none;">ĐĂNG NHẬP</a>
+                    <a class="register" href="{{route('register.user')}}" style="text-decoration: none;">ĐĂNG KÝ</a>
+                @endif
+                
                 <button id="menu_bar" type="button" class="navbar-toggle">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -60,7 +66,7 @@
                     <ul>
                         <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
                         <li><a href="{{route('sale')}}"> KHUYẾN MÃI</a></li>
-                        <li><a href="{{route('quanao')}}"> QUẦN,ÁO,GIÀY...</a></li>
+                        <li><a href="{{route('quanao')}}"> QUẦN ÁO , GIẦY</a></li>
                         <li><a href="{{route('phuchoi')}}"> THỰC PHẨM PHỤC HỒI</a></li>
                         <li><a href="{{route('bong')}}"> BÓNG</a></li>
                         <li><a href="{{route('chucnang')}}"> THỰC PHẨM CHỨC NĂNG</a></li>

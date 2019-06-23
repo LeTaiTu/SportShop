@@ -14,14 +14,21 @@
 Route::get('/', function () {
     return view('home.home');
 })->name('home');
+
 // login trang chu -> khach hang
-Route::get('/login', function () {
+Route::get('/login_user', function () {
     return view('login');
-})->name('login');
+})->name('login.user');
+Route::post('/login_user', "\App\Http\Controllers\Auth\LoginController@login")->name('login.user');
+
+// logout
+Route::get('/logout', "\App\Http\Controllers\Auth\LoginController@logout")->name('logout');
 // register dang ky khach hang
-Route::get('/register', function () {
+Route::get('/register_user', function () {
     return view('register');
-})->name('register');
+})->name('register.user');
+Route::post('/register_user', "\App\Http\Controllers\Auth\LoginController@register")->name('register.create');
+
 // menu trang khuyen mai
 Route::get('/sale', function () {
     return view('sale');
@@ -86,3 +93,5 @@ Route::prefix('admin')->group(function() {
     Route::get('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@edit")->name('slide.edit');
     Route::post('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@update")->name('slide.update');
 });
+Auth::routes();
+
