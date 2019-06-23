@@ -47,7 +47,7 @@
                 </div>
                 @if(Auth::check())
                     
-                    <a class="login" href="{{route('change_user', Auth::user()->id)}}" style="text-decoration: none;top: 16px;right: 15px;">Xin Chào {{Auth::user()->name}} </a>
+                    <a class="login" href="{{route('change_user',Auth::user()->id)}}" style="text-decoration: none;top: 16px;right: 15px;">Xin Chào {{Auth::user()->name}} </a>
                     <div>
                         <a class="login" href="{{route('logout')}}" style="text-decoration: none; top: 43px;right: 15px;"> Đăng Xuất</a>
                     </div>

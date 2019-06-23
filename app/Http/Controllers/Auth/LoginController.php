@@ -81,29 +81,6 @@ class LoginController extends Controller
         $user->save();
         return redirect('/login_user')->with('success', "Bạn đã đăng ký thành công, vui lòng đăng nhập!");
     }
-    public function change_info(Request $request, $id) {
-      $rules = ['email' => 'required|email',
-                'password' => 'required|min:6|max:20',
-                're_password' => 'required|same:password'];
-
-        $message = [
-                    'email.email' => 'Email không đúng định dạng!',
-                    'email.unique' => 'Email không đã tồn tại!',
-                    'password.required' => 'Vui lòng nhập password!',
-                    'password.min' => 'Mật khẩu từ 6 ký tự trở lên!',
-                    'password.max' => 'Mật khẩu nhỏ hơn 20 ký tự!',
-                    're_password.required' => 'Vui lòng nhập lại mật khẩu',
-                    're_password.same' => 'Mật khẩu không khớp!'];
-
-        $request->validate($rules,$message);
-        $user = User::findOrFail($id);
-
-        $user->fill($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
-         @dd($user);
-        return redirect('/login_user')->with('success', "Bạn đã cập nhật thành công, vui lòng đăng nhập!");
-    }
 
 
     public function logout(Request $request) {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Hash;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -60,7 +61,9 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        
+        return view('edit_info_user', compact('user'));
     }
 
     /**
@@ -72,7 +75,26 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = ['email' => 'required|email',
+                'password' => 'required|min:6|max:20',
+                're_password' => 'required|same:password'];
+
+        $message = ['email.required' => 'Vui lòng nhập email!',
+                    'email.email' => 'Email không đúng định dạng!',
+                    'password.required' => 'Vui lòng nhập password!',
+                    'password.min' => 'Mật khẩu từ 6 ký tự trở lên!',
+                    'password.max' => 'Mật khẩu nhỏ hơn 20 ký tự!',
+                    're_password.required' => 'Vui lòng nhập lại mật khẩu',
+                    're_password.same' => 'Mật khẩu không khớp!'];
+
+        $request->validate($rules,$message);
+        $user = User::findOrFail($id);
+
+        $user->fill($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+        Auth::logout();
+        return redirect('/login_user')->with('success', "Bạn đã cập nhật thành công, vui lòng đăng nhập lại!");
     }
 
     /**

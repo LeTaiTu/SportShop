@@ -25,30 +25,30 @@
             <div class="form_login col-md-6 col-md-offset-3">
                 <img src="{{asset('asset_admin/images/logo.png')}}" alt="">
                 <p class="title">Sửa Thông Tin</p>
-                <form action="{{route('change_user.edit')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
+                <form action="{{route('edit_user',$user->id)}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
                     @csrf
 
                             <div class="form-group" style="width: 100%;">
                                 <label>Họ Tên : </label>
-                                <input type="text" class="form-control" name="name" placeholder="Nhập họ tên" value="{{Auth::user()->name}}" style="border-radius: 5px;">
+                                <input type="text" class="form-control" name="name" placeholder="Nhập họ tên" value="{{$user->name}}" style="border-radius: 5px;">
                             </div>
                             <div class="input-group" style="width: 100%;">
                                 <label>Số Điện Thoại : </label>
-                                <input type="number" class="form-control" value="{{Auth::user()->phone}}" name="phone" placeholder="Nhập số điện thoại"
+                                <input type="number" class="form-control" value="{{$user->phone}}" name="phone" placeholder="Nhập số điện thoại"
                                     style="border-radius: 5px;">
                             </div>
                             <div class="input-group" style="width: 100%;">
                                 <label>Email : </label>
-                                <input type="email" value="{{Auth::user()->email}}" class="form-control" name="email" placeholder="Nhập email" style="border-radius: 5px;">
+                                <input type="email" value="{{$user->email}}" class="form-control" name="email" placeholder="Nhập email" style="border-radius: 5px;">
                             </div>
                             <div class="input-group" style="width: 100%;">
                                 <label>Mật Khẩu : </label>
-                                <input type="password" value="{{Auth::user()->password}}" class="form-control" name="password" placeholder="Mật khẩu (6 ký tự trở lên)"
+                                <input type="password" value="{{$user->password}}" class="form-control" name="password" placeholder="Mật khẩu (6 ký tự trở lên)"
                                     style="border-radius: 5px;">
                             </div>
                             <div class="input-group" style="width: 100%;">
                                 <label>Nhập Lại Mật Khẩu : </label>
-                                <input type="password" value="{{Auth::user()->password}}" class="form-control" name="re_password" placeholder="Nhập lại mật khẩu"
+                                <input type="password" value="{{$user->password}}" class="form-control" name="re_password" placeholder="Nhập lại mật khẩu"
                                     style="border-radius: 5px;">
                             </div>
 

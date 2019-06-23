@@ -28,12 +28,11 @@ Route::get('/register_user', function () {
     return view('register');
 })->name('register.user');
 Route::post('/register_user', "\App\Http\Controllers\Auth\LoginController@register")->name('register.create');
-// thay doi thong tin khach hang
-Route::get('/change_user', function () {
-    return view('edit_info_user');
-})->name('change_user');
 
-Route::post('/change_user', "\App\Http\Controllers\Auth\LoginController@change_info")->name('change_user.edit');
+// thay doi thong tin khach hang
+Route::get('/change_info_user/{id}', "\App\Http\Controllers\HomeController@edit")->name('change_user');
+
+Route::post('/change_info_user/{id}', "\App\Http\Controllers\HomeController@update")->name('edit_user');
 
 // menu trang khuyen mai
 Route::get('/sale', function () {
