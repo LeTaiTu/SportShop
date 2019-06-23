@@ -46,8 +46,12 @@
                     <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;">Giỏ hàng</p>
                 </div>
                 @if(Auth::check())
-                    <a class="login" href="" style="text-decoration: none;">Xin Chào {{Auth::user()->name}}</a>
-                    <a class="register" href="{{route('logout')}}" style="text-decoration: none;"> Đăng Xuất</a>
+                    
+                    <a class="login" href="{{route('change_user', Auth::user()->id)}}" style="text-decoration: none;top: 16px;right: 15px;">Xin Chào {{Auth::user()->name}} </a>
+                    <div>
+                        <a class="login" href="{{route('logout')}}" style="text-decoration: none; top: 43px;right: 15px;"> Đăng Xuất</a>
+                    </div>
+
                 @else
                     <a class="login" href="{{route('login.user')}}" style="text-decoration: none;">ĐĂNG NHẬP</a>
                     <a class="register" href="{{route('register.user')}}" style="text-decoration: none;">ĐĂNG KÝ</a>
