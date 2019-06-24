@@ -19,12 +19,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::query()->paginate(15);
-        foreach ($products as $product) {
-            $details[$product->id] = ProductDetail::where('product_id', $product->id)->get();
-        }
-        // echo "<pre>";
+        // foreach ($products as $product) {
+        //     $details[$product->id] = ProductDetail::where('product_id', $product->id)->get();
+        // }
+        // echo "<pre>";;var_dump($products);die();
+        $details = ProductDetail::query()->paginate(15);
+        // echo "<pre>";var_dump($details);die();
         // foreach ($details as $value) {
-        //     var_dump($value);
+        //     var_dump($value->id);
         // }
         // die();
         return view('admin.product.index',['products'=>$products, 'details'=>$details]);

@@ -26,10 +26,46 @@
 			{{-- <td><img src="{{ asset('asset_admin/images/'.$product->details->image) }}" height="100px"></td> --}}
 			{{-- @forelse($detais as $detail) --}}
 			{{-- @if ($detail->product_id == $product->id) --}}
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>
+				@forelse($details as $detail)
+				@if($product->id==$detail->product_id)
+				{{ $detail->size }}
+				{{ ' ' }}
+				@endif
+				@empty
+				"Trống";
+				@endforelse
+			</td>
+			<td>
+				@forelse($details as $detail)
+				@if($product->id==$detail->product_id)
+				{{ $detail->quantity }}
+				{{ ' ' }}
+				@endif
+				@empty
+				"Trống";
+				@endforelse
+			</td>
+			<td>
+				@forelse($details as $detail)
+				@if($product->id==$detail->product_id)
+				{{ number_format($detail->original_price) }}
+				{{ ' ' }}
+				@endif
+				@empty
+				"Trống";
+				@endforelse
+			</td>
+			<td>
+				@forelse($details as $detail)
+				@if($product->id==$detail->product_id)
+				{{ number_format($detail->sell_price )}}
+				{{ ' ' }}
+				@endif
+				@empty
+				"Trống";
+				@endforelse
+			</td>
 			{{-- @empty --}}
 			{{-- <tr> --}}
 				{{-- <td>Không có dữ liệu</td> --}}
