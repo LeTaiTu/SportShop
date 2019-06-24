@@ -30,7 +30,27 @@
 				@forelse($details as $detail)
 				@if($product->id==$detail->product_id)
 				{{ $detail->size }}
-				{{ ' ' }}
+				<br>
+				@endif
+				@empty
+				"Trống";
+				@endforelse
+			</td>
+			<td>
+				@forelse($details as $detail)
+				@if($product->id==$detail->product_id)
+				{{ number_format($detail->original_price). 'đ' }}
+				<br>
+				@endif
+				@empty
+				"Trống";
+				@endforelse
+			</td>
+			<td>
+				@forelse($details as $detail)
+				@if($product->id==$detail->product_id)
+				{{ number_format($detail->sell_price ). 'đ'}}
+				<br>
 				@endif
 				@empty
 				"Trống";
@@ -40,27 +60,7 @@
 				@forelse($details as $detail)
 				@if($product->id==$detail->product_id)
 				{{ $detail->quantity }}
-				{{ ' ' }}
-				@endif
-				@empty
-				"Trống";
-				@endforelse
-			</td>
-			<td>
-				@forelse($details as $detail)
-				@if($product->id==$detail->product_id)
-				{{ number_format($detail->original_price) }}
-				{{ ' ' }}
-				@endif
-				@empty
-				"Trống";
-				@endforelse
-			</td>
-			<td>
-				@forelse($details as $detail)
-				@if($product->id==$detail->product_id)
-				{{ number_format($detail->sell_price )}}
-				{{ ' ' }}
+				<br>
 				@endif
 				@empty
 				"Trống";
