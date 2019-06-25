@@ -80,6 +80,9 @@ Route::prefix('admin')->group(function() {
     Route::post('/account/{id}/edit',"\App\Http\Controllers\Admins\AccountController@update")->name('account.update');
     // Sản phẩm
     Route::get('/product', "\App\Http\Controllers\Admins\ProductController@index")->name('admin.product');
+    Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
+    Route::post('/product/create',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
+
     // trang doi password admin
     Route::get('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@changepass")->name('account.changepass');
     Route::post('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@updatepass")->name('account.updatepass');

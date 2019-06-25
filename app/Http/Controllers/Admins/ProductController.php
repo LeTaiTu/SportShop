@@ -40,7 +40,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $producers = Producer::get();
+        $kind_sports = KindSport::get(); 
+        return view('admin.product.create',[
+            'producers' => $producers,
+            'kind_sports' => $kind_sports
+        ]);
     }
 
     /**
@@ -51,7 +56,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($_POST['txtSize']);die();
     }
 
     /**
