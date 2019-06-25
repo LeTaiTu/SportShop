@@ -51,7 +51,9 @@
             <label><input type="checkbox" name="txtSize" value="S" id="s"> Size S</label>    
         </div>
         <div class="form-group">
-            <input type="hidden" name="txtName" id="biens" placeholder="Số lượng">
+            <input type="hidden" name="txtQuantity" id="quantity" placeholder="Số lượng" class="form-control" style="width: 200px">
+            <input type="hidden" name="txtPriceOri" id="price1" placeholder="Giá gốc" class="form-control" style="width: 200px">
+            <input type="hidden" name="txtPriceSell" id="price2" placeholder="Giá bán" class="form-control" style="width: 200px">
         </div>
         <div class="checkbox">
             <label><input type="checkbox" name="txtSize" value="M" id="m"> Size M</label>    
@@ -73,10 +75,14 @@
 <script type="text/javascript">
     document.getElementById('s').onclick = function(e){
         if(this.checked){
-            document.getElementById('biens').type = 'text';
+            document.getElementById('quantity').type = 'text';
+            document.getElementById('price1').type = 'text';
+            document.getElementById('price2').type = 'text';
         }
         else{
-            document.getElementById('biens').type = 'hidden';
+            document.getElementById('quantity').type = 'hidden';
+            document.getElementById('price1').type = 'hidden';
+            document.getElementById('price2').type = 'hidden';
         }
     }
 </script>
