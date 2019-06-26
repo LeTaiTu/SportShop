@@ -3,13 +3,38 @@
 
 <div class="container" style="margin-bottom: 30px">
 	<div class="col-xl-8 offset-xl-2 py-5">
-
+		@if(session()->has("success"))
+		<div class="alert alert-success">
+		    <ul>
+		        <li>{{session("success")}}</li>
+		    </ul>
+		</div>
+		@endif
+		@if(session()->has("error"))
+	    <div class="alert alert-danger">
+	        <ul>
+	            <li>{{session("error")}}</li>
+	        </ul>
+	    </div>
+	    @endif
+		{{-- hien thi loi --}}
+		@if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach($errors->all() as $error)
+				{{-- trong laravel dung {{thay cho echo}} --}}
+				<li>{{$error}}</li> 
+				@endforeach
+			</ul>
+		</div>
+		@endif
+		
 		<h1>Liên Hệ</h1>
 
 		<!-- We're going to place the form here in the next step -->
 
-		<form id="contact-form" method="post" action="contact.php" role="form">
-
+		<form id="contact-form" action="{{route('contact.store')}}" method="post" enctype="multipart/form-data" accept-charset="utf8" role="form">
+			@csrf
 			<div class="messages"></div>
 
 			<div class="controls">
@@ -41,7 +66,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="form_need">Nhu cầu của bạn </label>
-							<select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+							<select id="form_need" name="kind_request" class="form-control" required="required" data-error="Please specify your need.">
 								
 								<option value="Báo giá">Báo giá</option>
 								<option value="Trạng thái đơn hàng">Trạng thái đơn hàng</option>
@@ -56,7 +81,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="form_message">Nội Dung </label>
-							<textarea id="form_message" name="message" class="form-control" placeholder="Nhập thông tin cần gửi *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+							<textarea id="form_message" name="text" class="form-control" placeholder="Nhập thông tin cần gửi *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
 							<div class="help-block with-errors"></div>
 						</div>
 					</div>

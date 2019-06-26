@@ -108,6 +108,7 @@ Route::prefix('admin')->group(function() {
     // trang lien he khach hang
     Route::get('/contact',"\App\Http\Controllers\Admins\ContactController@index")->name('admin.contact');
     Route::post('/contact/search',"\App\Http\Controllers\Admins\ContactController@search")->name('contact.search');
+    Route::post('/contact/create',"\App\Http\Controllers\Admins\ContactController@store")->name('contact.store');
     Route::get('/contact/{id}/delete',"\App\Http\Controllers\Admins\ContactController@destroy")->name('contact.delete');
 });
 Auth::routes();
