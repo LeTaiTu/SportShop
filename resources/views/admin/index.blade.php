@@ -112,6 +112,9 @@
                         <li>
                             <a href="{{route('admin.slide')}}"><i class="fa fa-book"></i>Slide Sản Phẩm</a>
                         </li>
+                         <li>
+                            <a href="{{route('admin.producer')}}"><i class="fa fa-book"></i>Nhà sản xuất</a>
+                        </li>
                         <li>
                             <a href=""><i class="fa fa-th"></i>Đơn hàng</a>
                         </li>

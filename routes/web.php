@@ -110,6 +110,15 @@ Route::prefix('admin')->group(function() {
     Route::post('/contact/search',"\App\Http\Controllers\Admins\ContactController@search")->name('contact.search');
     Route::post('/contact/create',"\App\Http\Controllers\Admins\ContactController@store")->name('contact.store');
     Route::get('/contact/{id}/delete',"\App\Http\Controllers\Admins\ContactController@destroy")->name('contact.delete');
+
+    //trang producer
+    Route::get('/producer',"\App\Http\Controllers\Admins\ProducerController@index")->name('admin.producer');
+    Route::post('/producer/search',"\App\Http\Controllers\Admins\ProducerController@search")->name('producer.search');
+    Route::get('/producer/create',"\App\Http\Controllers\Admins\ProducerController@create")->name('producer.create');
+    Route::post('/producer/create',"\App\Http\Controllers\Admins\ProducerController@store")->name('producer.store');
+    Route::get('/producer/{id}/delete',"\App\Http\Controllers\Admins\ProducerController@destroy")->name('producer.delete');
+    Route::get('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@edit")->name('producer.edit');
+    Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerCo  ntroller@update")->name('producer.update');
 });
 Auth::routes();
 
