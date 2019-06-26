@@ -61,7 +61,8 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<input type="submit" class="btn btn-success btn-send" value="Send message">
+						<input type="submit" class="btn btn-success btn-send" value="Gửi Thông Tin">
+						<input type="reset" class="btn btn-warning" value="Nhập Lại">
 					</div>
 				</div>
 

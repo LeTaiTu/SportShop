@@ -122,6 +122,9 @@
                             <a href=""><i class="fa fa-th"></i>Thành viên</a>
                         </li>
                         <li>
+                            <a href="{{route('admin.contact')}}"><i class="fa fa-th"></i>Khách Liên Hệ</a>
+                        </li>
+                        <li>
                             <a><i class="fa fa-th"></i>Thống kê</a>
                         </li>
                         <li>

@@ -78,14 +78,16 @@ Route::prefix('admin')->group(function() {
     Route::get('/account/{id}/delete',"\App\Http\Controllers\Admins\AccountController@destroy")->name('account.delete');
     Route::get('/account/{id}/edit',"\App\Http\Controllers\Admins\AccountController@edit")->name('account.edit');
     Route::post('/account/{id}/edit',"\App\Http\Controllers\Admins\AccountController@update")->name('account.update');
+
+       // trang doi password admin
+    Route::get('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@changepass")->name('account.changepass');
+    Route::post('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@updatepass")->name('account.updatepass');
+
     // Sản phẩm
     Route::get('/product', "\App\Http\Controllers\Admins\ProductController@index")->name('admin.product');
     Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
     Route::post('/product/create',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
 
-    // trang doi password admin
-    Route::get('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@changepass")->name('account.changepass');
-    Route::post('/account/{id}/changepass',"\App\Http\Controllers\Admins\AccountController@updatepass")->name('account.updatepass');
     // trang kindsport
     Route::get('/kindsport',"\App\Http\Controllers\Admins\KindsportController@index")->name('admin.kindsport');
     Route::post('/kindsport/search',"\App\Http\Controllers\Admins\KindsportController@search")->name('kindsport.search');
@@ -102,6 +104,11 @@ Route::prefix('admin')->group(function() {
     Route::get('/slide/{id}/delete',"\App\Http\Controllers\Admins\SlideController@destroy")->name('slide.delete');
     Route::get('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@edit")->name('slide.edit');
     Route::post('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@update")->name('slide.update');
+
+    // trang lien he khach hang
+    Route::get('/contact',"\App\Http\Controllers\Admins\ContactController@index")->name('admin.contact');
+    Route::post('/contact/search',"\App\Http\Controllers\Admins\ContactController@search")->name('contact.search');
+    Route::get('/contact/{id}/delete',"\App\Http\Controllers\Admins\ContactController@destroy")->name('contact.delete');
 });
 Auth::routes();
 
