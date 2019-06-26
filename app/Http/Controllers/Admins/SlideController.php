@@ -53,7 +53,7 @@ class SlideController extends Controller
         $slide = new Slide;
         $file = $request->file('image');
         $image = time()."-".$file->getClientOriginalName();
-        $file->storeAs('public/slide', $image);
+        $file->storeAs('public/slide', $image); //ckeck lai has file
         $slide->fill($request->all());
         $slide->image = $image;
         $slide->save();

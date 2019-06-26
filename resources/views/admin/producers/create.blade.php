@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label>Active</label>
-            <input type="number" name="active" class="form-control">
+            <input type="number" min="0" max="1" value="0" name="active" class="form-control">
         </div>
     	<div class="form-group">
             <label>Hình Ảnh</label>

@@ -74,9 +74,14 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.deleteproducer').click(function() {
+            $('.deleteproducer').click(function(e) {
+                
                 if (confirm("Bạn Có Muốn Xóa Không?")) {
-                    
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
                 }
             });
         });

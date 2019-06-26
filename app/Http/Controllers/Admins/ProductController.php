@@ -56,7 +56,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($_POST['txtSize']);die();
+        $rules = [
+            'name_pro' => 'required|string|max:191',
+            'kind_sport_id' => 'required|max:191',
+            'producer_id' => 'required|max:191',
+            'content' => 'required|max:191',
+        ];        
+        $request->validate($rules);
+        $sizes[] = $request->input('txtSize');
+        $options = $request->input('txtOptions');
+
+        $product = new Product;
+        $product->fill($request->all());
+        $product->save();
+        // $product_id = $product->id;
+        $prDetails = new ProductDetail;
+
+        for($i=0;$i<=4; $i++) {
+            $prDetails->product_id = $product->id;
+            $prDetails->size = $size[$i];
+            $prDetails->quantity = $options[$size[$i]]['txtQuantity'];
+            $prDetails->original_price = $options[$size[$i]]['txtPriceOri'];
+            $prDetails->sell_price = $options[$size[$i]]['txtPriceSell'];
+            $prDetails->save();
+        }
     }
 
     /**
