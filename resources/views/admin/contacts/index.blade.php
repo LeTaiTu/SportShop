@@ -64,7 +64,7 @@
 	    		<td style="text-align: center">{{$ct->created_at}}</td>
 	    		<td style="text-align: center">{{$ct->updated_at}}</td>
 	    		
-	    		<td style="text-align: center"><a class="deleteAcc btn btn-danger" href="{{route('contact.delete',$ct->id)}}">Xóa</a></td>
+	    		<td style="text-align: center"><a onclick="deletect({{$ct->id}})" class="deleteAcc btn btn-danger" >Xóa</a></td>
 	    	</tr>
 		    @empty
 		    	<tr>
@@ -78,12 +78,19 @@
         {{$contact->links()}}
     </div>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.deleteAcc').click(function() {
-				if (confirm("Bạn Có Muốn Xóa Không?")) {
+		// $(document).ready(function() {
+		// 	$('.deleteAcc').click(function() {
+		// 		if (confirm("Bạn Có Muốn Xóa Không?")) {
 					
-				}
-			});
-		});
+		// 			
+		// 		}
+		// 	});
+		// });
+		function deletect(id) {
+		  if (confirm("Bạn Có Muốn Xóa Không?")) {
+					
+				//window.location.href = "";
+			}
+		}
 	</script>
 @endsection
