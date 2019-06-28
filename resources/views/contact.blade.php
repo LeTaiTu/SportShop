@@ -68,6 +68,7 @@
 							<label for="form_need">Nhu cầu của bạn </label>
 							<select id="form_need" name="kind_request" class="form-control" required="required" data-error="Please specify your need.">
 								
+								<option value="Quên Mật Khẩu">Lấy Lại Password</option>
 								<option value="Báo giá">Báo giá</option>
 								<option value="Trạng thái đơn hàng">Trạng thái đơn hàng</option>
 								<option value="Bản sao hóa đơn">Bản sao hóa đơn</option>
@@ -86,7 +87,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<input type="submit" class="btn btn-success btn-send" value="Gửi Thông Tin">
+						<input type="submit" class="btn btn-success btn-send" value="Gửi Yêu Cầu">
 						<input type="reset" class="btn btn-warning" value="Nhập Lại">
 					</div>
 				</div>
@@ -99,8 +100,5 @@
 	</div>
 
 </div>
-
-
-
 
 @endsection

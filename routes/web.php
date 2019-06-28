@@ -104,6 +104,15 @@ Route::prefix('admin')->group(function() {
     Route::get('/slide/{id}/delete',"\App\Http\Controllers\Admins\SlideController@destroy")->name('slide.delete');
     Route::get('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@edit")->name('slide.edit');
     Route::post('/slide/{id}/edit',"\App\Http\Controllers\Admins\SlideController@update")->name('slide.update');
+    
+    // trang thanh vien khach hang
+    Route::get('/member', "\App\Http\Controllers\Admins\MemberController@index")->name('admin.member');
+    Route::post('/member/search', "\App\Http\Controllers\Admins\MemberController@search")->name('member.search');
+    Route::get('/member/create',"\App\Http\Controllers\Admins\MemberController@create")->name('member.create');
+    Route::post('/member/create',"\App\Http\Controllers\Admins\MemberController@store")->name('member.store');
+    Route::get('/member/{id}/delete',"\App\Http\Controllers\Admins\MemberController@destroy")->name('member.delete');
+    Route::get('/member/{id}/edit',"\App\Http\Controllers\Admins\MemberController@edit")->name('member.edit');
+    Route::post('/member/{id}/edit',"\App\Http\Controllers\Admins\MemberController@update")->name('member.update');
 
     // trang lien he khach hang
     Route::get('/contact',"\App\Http\Controllers\Admins\ContactController@index")->name('admin.contact');

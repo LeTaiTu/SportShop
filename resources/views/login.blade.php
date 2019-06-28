@@ -49,7 +49,7 @@
                         </form>
                         <p style="margin-top: 10px;">
                             <a href="{{route('register')}}">Đăng ký</a>
-                            <a href="" style="position: absolute; right: 15px;">Quên mật khẩu</a>
+                            <a href="{{route('contact')}}" style="position: absolute; right: 15px;">Quên mật khẩu</a>
                         </p>
                     </div>
                     

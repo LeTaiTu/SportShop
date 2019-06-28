@@ -122,7 +122,7 @@
                             <a href=""><i class="fa fa-th"></i>Chi tiết đơn hàng</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-th"></i>Thành viên</a>
+                            <a href="{{route('admin.member')}}"><i class="fa fa-th"></i>Thành viên</a>
                         </li>
                         <li>
                             <a href="{{route('admin.contact')}}"><i class="fa fa-th"></i>Khách Liên Hệ</a>

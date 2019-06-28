@@ -71,11 +71,15 @@
         <!-- paging -->
         {{$kindsport->links()}}
     </div>
+    @forelse($users as $user)
+    	<td style="text-align: center"><a class="deleteItem btn btn-danger" >Xóa</a></td>
+    @empty
+	@endforelse
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.deleteAcc').click(function() {
+			$('.deleteItem').click(function() {
 				if (confirm("Bạn Có Muốn Xóa Không?")) {
-					
+					window.location.href="{{route('delete',$user->id)}}"
 				}
 			});
 		});
