@@ -63,23 +63,25 @@ class ProductController extends Controller
             'content' => 'required|max:191',
         ];        
         $request->validate($rules);
-        $sizes[] = $request->input('txtSize');
+        $sizes = $request->input('txtSize');
         $options = $request->input('txtOptions');
+        // var_dump($sizes);die();
 
         $product = new Product;
         $product->fill($request->all());
         $product->save();
         // $product_id = $product->id;
-        $prDetails = new ProductDetail;
-
-        for($i=0;$i<=4; $i++) {
+        
+        foreach($sizes as $key => $data) {
+            $prDetails = new ProductDetail;
             $prDetails->product_id = $product->id;
-            $prDetails->size = $size[$i];
-            $prDetails->quantity = $options[$size[$i]]['txtQuantity'];
-            $prDetails->original_price = $options[$size[$i]]['txtPriceOri'];
-            $prDetails->sell_price = $options[$size[$i]]['txtPriceSell'];
+            $prDetails->size = $data;
+            $prDetails->quantity = $options[$data]['txtQuantity'];
+            $prDetails->original_price = $options[$data]['txtPriceOri'];
+            $prDetails->sell_price = $options[$data]['txtPriceSell'];
             $prDetails->save();
         }
+        return redirect('admin/product')->with('success', "Thêm mới thành công");
     }
 
     /**
