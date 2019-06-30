@@ -58,7 +58,7 @@
 	    		<td style="text-align: center">{{$ks->created_at}}</td>
 	    		<td style="text-align: center">{{$ks->updated_at}}</td>
 	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('kindsport.edit',$ks->id)}}">Sửa</a></td>
-	    		<td style="text-align: center"><a class="deleteAcc btn btn-danger" href="{{route('kindsport.delete',$ks->id)}}">Xóa</a></td>
+	    		<td style="text-align: center"><a class="deleteKind btn btn-danger" href="{{route('kindsport.delete',$ks->id)}}">Xóa</a></td>
 	    	</tr>
 		    @empty
 		    	<tr>
@@ -71,17 +71,22 @@
         <!-- paging -->
         {{$kindsport->links()}}
     </div>
-    @forelse($users as $user)
+    {{-- @forelse($users as $user)
     	<td style="text-align: center"><a class="deleteItem btn btn-danger" >Xóa</a></td>
     @empty
-	@endforelse
+	@endforelse --}}
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.deleteItem').click(function() {
-				if (confirm("Bạn Có Muốn Xóa Không?")) {
-					window.location.href="{{route('delete',$user->id)}}"
-				}
-			});
-		});
+		 $(document).ready(function() {
+            $('.deleteKind').click(function(e) {
+                
+                if (confirm("Bạn Có Muốn Xóa Không?")) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
 	</script>
 @endsection
