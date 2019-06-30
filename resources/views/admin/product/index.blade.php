@@ -21,9 +21,9 @@
 		<tr>
 			<td>{{ $product->id }}</td>
 			<td>{{ $product->name_pro }}</td>
-			<td >Image</td>
+			{{-- <td >Image</td> --}}
 
-			{{-- <td><img src="{{ asset('asset_admin/images/'.$product->details->image) }}" height="100px"></td> --}}
+			<td><img src="{{filter_var($product->image,FILTER_VALIDATE_URL) ? asset($product->image) : asset('storage/product/'.$product->image)}}" width="80px"></td>
 			{{-- @forelse($detais as $detail) --}}
 			{{-- @if ($detail->product_id == $product->id) --}}
 			<td>
@@ -87,8 +87,8 @@
 		</tr>
 		@endforelse
 	</table>
-	{{-- <div class="col-md-12 text-center">
-		{{ $phones->links() }}
+	<div class="col-md-12 text-center">
+		{{ $products->links() }}
 	</div>
 	
 	<script type="text/javascript">
@@ -120,5 +120,5 @@
 				});
 			});
 		});
-	</script> --}}
+	</script>
 @endsection

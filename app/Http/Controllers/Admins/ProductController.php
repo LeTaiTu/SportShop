@@ -69,6 +69,10 @@ class ProductController extends Controller
 
         $product = new Product;
         $product->fill($request->all());
+        $file = $request->file('image');
+        $image = time() . "-". $file->getClientOriginalName();
+        $file->storeAs('public/product', $image);
+        $product->image = $image;
         $product->save();
         // $product_id = $product->id;
         
