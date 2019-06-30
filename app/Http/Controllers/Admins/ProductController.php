@@ -110,7 +110,7 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
         $producers = Producer::where("active", 1)->get();
         $kind_sports = KindSport::get(); 
-        $prDetails = ProductDetail::where("product_id",$id);
+        $prDetails = ProductDetail::where("product_id",$id)->get();
         return view('admin.product.edit', [
             'products'=>$products,
             'producers'=>$producers,
