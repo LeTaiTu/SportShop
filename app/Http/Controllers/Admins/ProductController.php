@@ -23,7 +23,7 @@ class ProductController extends Controller
         //     $details[$product->id] = ProductDetail::where('product_id', $product->id)->get();
         // }
         // echo "<pre>";;var_dump($products);die();
-        $details = ProductDetail::query()->paginate(15);
+        $details = ProductDetail::get();
         // echo "<pre>";var_dump($details);die();
         // foreach ($details as $value) {
         //     var_dump($value->id);
@@ -107,7 +107,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::findOrFail($id);
+        $producers = Producer::where("active", 1)->get();
+        $kind_sports = KindSport::get(); 
+        $prDetails = ProductDetail::where("product_id",$id);
+        return view('admin.product.edit', [
+            'products'=>$products,
+            'producers'=>$producers,
+            'kind_sports'=>$kind_sports,
+            'prDetails'=>$prDetails,
+        ]);
     }
 
     /**

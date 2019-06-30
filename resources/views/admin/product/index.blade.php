@@ -76,8 +76,8 @@
 			<td >{{ isset($product->producer) ? $product->producer->name: "" }}</td>
 			<td >{{ $product->content }}</td>
 			<td >{{ $product->view }}</td>
-			{{-- <td><a href="{{ route('product.edit',$product->id) }}">Chỉnh sửa</a></td> --}}
-			<td >Chỉnh sửa</td>
+			<td><a class="btn btn-warning" href="{{ route('product.edit',$product->id) }}">Chỉnh sửa</a></td>
+			{{-- <td >Chỉnh sửa</td> --}}
 			{{-- <td><button type="button" class="btn btn-warning deletePhone"  data-url="{{ route('product.delete',$product->id) }}"> Xóa</button> </td> --}}
 			<td >Xóa</td>
 		</tr>
@@ -91,7 +91,7 @@
 		{{ $products->links() }}
 	</div>
 	
-	<script type="text/javascript">
+	{{-- <script type="text/javascript">
 		$(document).ready(function(){
 			$('.deletePhone').click(function(){
 				if(!confirm("Bạn chắc chắn muốn xóa")) {
@@ -120,5 +120,5 @@
 				});
 			});
 		});
-	</script>
+	</script> --}}
 @endsection

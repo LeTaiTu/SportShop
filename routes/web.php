@@ -87,6 +87,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/product', "\App\Http\Controllers\Admins\ProductController@index")->name('admin.product');
     Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
     Route::post('/product/create',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
+    Route::get('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@edit")->name('product.edit');
+    Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@update")->name('product.update');
 
     // trang kindsport
     Route::get('/kindsport',"\App\Http\Controllers\Admins\KindsportController@index")->name('admin.kindsport');
@@ -95,7 +97,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/kindsport/create',"\App\Http\Controllers\Admins\KindsportController@store")->name('kindsport.store');
     Route::get('/kindsport/{id}/delete',"\App\Http\Controllers\Admins\KindsportController@destroy")->name('kindsport.delete');
     Route::get('/kindsport/{id}/edit',"\App\Http\Controllers\Admins\KindsportController@edit")->name('kindsport.edit');
-    Route::post('/account/{id}/edit',"\App\Http\Controllers\Admins\KindsportController@update")->name('kindsport.update');
+    Route::post('/kindsport/{id}/edit',"\App\Http\Controllers\Admins\KindsportController@update")->name('kindsport.update');
     // trang slide
     Route::get('/slide',"\App\Http\Controllers\Admins\SlideController@index")->name('admin.slide');
     Route::post('/slide/search',"\App\Http\Controllers\Admins\SlideController@search")->name('slide.search');

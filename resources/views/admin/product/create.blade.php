@@ -49,7 +49,7 @@
 </div>
 {{-- S --}}
 <div class="checkbox">
-    <label><input type="checkbox" name="txtSize[]" value="S" id="size-s"> Size S</label>    
+    <label><input type="checkbox"  name="txtSize[]" value="S" id="size-s" class="myCheckbox"> Size S</label>    
 </div>
 <div class="form-group" id="form-size-S">
     <input type="hidden" name="txtOptions[S][txtQuantity]" id="s1" placeholder="Số lượng" class="form-control" style="width: 200px">
@@ -85,7 +85,7 @@
 </div> 
 {{-- XXL --}}
 <div class="checkbox">
-    <label><input type="checkbox" name="txtSize[]" value="XXL" id="size-xxl"> Size XXL</label>    
+    <label><input type="checkbox" name="txtSize[]" value="XXL" id="size-xxl" > Size XXL</label>    
 </div>
 <div class="form-group" id="form-size-XXL">
     <input type="hidden" name="txtOptions[XXL][txtQuantity]" id="xxl1" placeholder="Số lượng" class="form-control" style="width: 200px">
@@ -95,7 +95,7 @@
 <button class="btn btn-warning" type="submit">Tạo Mới</button>
 <button class="btn btn-info" type="reset">Nhập Lại</button>
 <a class="btn btn-danger" href="{{route('admin.product')}}">Trở Lại</a>
-</form>
+</form>\
 <script type="text/javascript">
     document.getElementById('size-s').onclick = function(e){
         if(this.checked){
@@ -110,7 +110,7 @@
         }
     }
 
-     document.getElementById('size-m').onclick = function(e){
+    document.getElementById('size-m').onclick = function(e){
         if(this.checked){
             document.getElementById('m1').type = 'text';
             document.getElementById('m2').type = 'text';
@@ -123,7 +123,7 @@
         }
     }
 
-     document.getElementById('size-l').onclick = function(e){
+    document.getElementById('size-l').onclick = function(e){
         if(this.checked){
             document.getElementById('l1').type = 'text';
             document.getElementById('l2').type = 'text';
@@ -136,7 +136,7 @@
         }
     }
 
-     document.getElementById('size-xl').onclick = function(e){
+    document.getElementById('size-xl').onclick = function(e){
         if(this.checked){
             document.getElementById('xl1').type = 'text';
             document.getElementById('xl2').type = 'text';
@@ -149,7 +149,7 @@
         }
     }
 
-     document.getElementById('size-xxl').onclick = function(e){
+    document.getElementById('size-xxl').onclick = function(e){
         if(this.checked){
             document.getElementById('xxl1').type = 'text';
             document.getElementById('xxl2').type = 'text';
