@@ -1,7 +1,7 @@
 @extends('admin.index')
 @section('content')
 
-<h2>Thêm sản phẩm</h2>
+<h2>Cập nhật sản phẩm</h2>
 @if($errors->any())
 <div class="alert alert-danger">
     <ul>
