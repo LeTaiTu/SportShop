@@ -16,14 +16,14 @@
  @csrf
  <div class="form-group">
     <label>Tên sản phẩm</label>
-    <input type="text" name="name_pro" class="form-control" required="">
+    <input type="text" name="name_pro" class="form-control" required="" value="{{ $products->name_pro }}">
 </div>
 <div class="form-group">
     <label>Loại Sản Phẩm</label>
     <br>
     <select name="kind_sport_id" class="form-control">
         @foreach($kind_sports as $kind_sport)
-        <option value="{{$kind_sport->id}}">{{$kind_sport->tenloai}}</option>
+        <option {{ $kind_sport->id==$products->kind_sport_id ? "selected" : "" }} value="{{$kind_sport->id}}">{{$kind_sport->tenloai}}</option>
         @endforeach
     </select>
 </div>
@@ -32,24 +32,25 @@
     <br>
     <select name="producer_id" class="form-control">
         @foreach($producers as $producer)
-        <option value="{{$producer->id}}">{{$producer->name}}</option>
+        <option {{ $producer->id==$products->producer_id ? "selected" : ''}} value="{{$producer->id}}">{{$producer->name}}</option>
         @endforeach
     </select>
 </div>
 <div class="form-group">
     <label>Hình Ảnh</label>
+    <img src="{{filter_var($products->image,FILTER_VALIDATE_URL) ? asset($products->image) : asset('storage/product/'.$products->image)}}" width="80px">
     <input type="file" name="image" class="form-control">
 </div>
 <div class="form-group">
     <label>Chi tiết sản phẩm</label><br>
-    <textarea rows="5" name="content" style="width: 100%" ></textarea>
+    <textarea rows="5" name="content" style="width: 100%" >{{ $products->content }}</textarea>
 </div>
 <div>
     <label>Kích cỡ</label>
 </div>
 {{-- S --}}
 <div class="checkbox">
-    <label><input type="checkbox"  name="txtSize[]" value="S" id="size-s" class="myCheckbox"> Size S</label>    
+    <label><input type="checkbox"  name="txtSize[]" value="S" id="size-s"> Size S</label>    
 </div>
 <div class="form-group" id="form-size-S">
     <input type="hidden" name="txtOptions[S][txtQuantity]" id="s1" placeholder="Số lượng" class="form-control" style="width: 200px">

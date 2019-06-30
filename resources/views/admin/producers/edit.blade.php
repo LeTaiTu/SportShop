@@ -34,7 +34,7 @@
         
     	<div class="form-group">
             <label>Hình Ảnh</label>
-            <img src="{{filter_var($producers->image,FILTER_VALIDATE_URL) ? asset($producer-s>image) : asset('storage/producer/'.$producers->image)}}" width="80px">
+            <img src="{{filter_var($producers->image,FILTER_VALIDATE_URL) ? asset($producers->image) : asset('storage/producer/'.$producers->image)}}" width="80px">
             <input type="file" name="image" class="form-control">
         </div>
     	<button class="btn btn-warning" type="submit">Cập Nhật</button>
