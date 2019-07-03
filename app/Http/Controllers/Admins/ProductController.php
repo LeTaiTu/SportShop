@@ -38,13 +38,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
+    {
+        if ($request->input('kind_sport_id') != null) {
+            $kind = $request->input('kind_sport_id');
+            if ($kind == 1) {
+                session(['kind'=>$kind]);
+                return redirect()->action('\App\Http\Controllers\Admins\ProductController@createClothes', ['kind' => $kind]);
+            }
+            else{
+                return "Found";
+            }
+        } else {
+            $kind_sports = KindSport::get(); 
+            return view('admin.product.create',[
+                'kind_sports' => $kind_sports,
+            ]);
+        }
+        
+        
+    }
+
+    public function createClothes()
     {
         $producers = Producer::get();
-        $kind_sports = KindSport::get(); 
-        return view('admin.product.create',[
+        return view('admin.product.createClothes',[
             'producers' => $producers,
-            'kind_sports' => $kind_sports
         ]);
     }
 
@@ -85,6 +104,7 @@ class ProductController extends Controller
             $prDetails->sell_price = $options[$data]['txtPriceSell'];
             $prDetails->save();
         }
+        session()->forget('kind');
         return redirect('admin/product')->with('success', "Thêm mới thành công");
     }
 

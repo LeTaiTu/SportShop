@@ -86,7 +86,9 @@ Route::prefix('admin')->group(function() {
     // Sản phẩm
     Route::get('/product', "\App\Http\Controllers\Admins\ProductController@index")->name('admin.product');
     Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
-    Route::post('/product/create',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
+    Route::post('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
+    Route::get('/product/createClothes', "\App\Http\Controllers\Admins\ProductController@createClothes")->name('product.createClothes');
+    Route::post('/product/createClothes',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
     Route::get('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@edit")->name('product.edit');
     Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@update")->name('product.update');
 
