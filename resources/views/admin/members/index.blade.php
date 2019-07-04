@@ -64,11 +64,11 @@
 	    		<td style="text-align: center">{{$us->created_at}}</td>
 	    		<td style="text-align: center">{{$us->updated_at}}</td>
 	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('member.edit',$us->id)}}">Sửa</a></td>
-	    		<td style="text-align: center"><a onclick="deleteItem({{$us->id}})" class="deleteAcc btn btn-danger" >Xóa</a></td>
+	    		<td style="text-align: center"><a class="deleteItem btn btn-danger" href="{{route('member.delete',$us->id)}}">Xóa</a></td>
 	    	</tr>
 		    @empty
 		    	<tr>
-		    		<td>Khong co du lieu</td>
+		    		<td>Không Có Dữ Liệu</td>
 		    	</tr>
 		    @endforelse
 	    </tbody>
@@ -79,18 +79,17 @@
     </div>
     
 	<script type="text/javascript">
-		function deleteItem(id) {
-			if (confirm("Bạn Có Muốn Xóa Không?")) {
-					// window.location.href="";
-			}
-			
-		}
-		$(document).ready(function() {
-			// $('.deleteAcc').click(function() {
-			// 	if (confirm("Bạn Có Muốn Xóa Không?")) {
-			// 		window.location.href=""
-			// 	}
-			// });
-		});
+		 $(document).ready(function() {
+            $('.deleteItem').click(function(e) {
+                
+                if (confirm("Bạn Có Muốn Xóa Không?")) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
 	</script>
 @endsection

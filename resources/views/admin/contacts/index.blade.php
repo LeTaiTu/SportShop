@@ -64,11 +64,11 @@
 	    		<td style="text-align: center">{{$ct->created_at}}</td>
 	    		<td style="text-align: center">{{$ct->updated_at}}</td>
 	    		
-	    		<td style="text-align: center"><a onclick="deletect({{$ct->id}})" class="deleteAcc btn btn-danger" >Xóa</a></td>
+	    		<td style="text-align: center"><a class="deleteItem btn btn-danger" href="{{route('contact.delete',$ct->id)}}">Xóa</a></td>
 	    	</tr>
 		    @empty
 		    	<tr>
-		    		<td>Khong co du lieu</td>
+		    		<td>Không Có Dữ Liệu</td>
 		    	</tr>
 		    @endforelse
 	    </tbody>
@@ -78,19 +78,17 @@
         {{$contact->links()}}
     </div>
 	<script type="text/javascript">
-		// $(document).ready(function() {
-		// 	$('.deleteAcc').click(function() {
-		// 		if (confirm("Bạn Có Muốn Xóa Không?")) {
-					
-		// 			
-		// 		}
-		// 	});
-		// });
-		function deletect(id) {
-		  if (confirm("Bạn Có Muốn Xóa Không?")) {
-					
-				//window.location.href = "";
-			}
-		}
+		 $(document).ready(function() {
+            $('.deleteItem').click(function(e) {
+                
+                if (confirm("Bạn Có Muốn Xóa Không?")) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
 	</script>
 @endsection

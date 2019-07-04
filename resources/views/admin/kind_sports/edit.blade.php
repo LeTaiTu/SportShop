@@ -16,7 +16,7 @@
         @csrf
         <div class="form-group">
             <label>Tên Loại Sản Phẩm</label>
-            <input type="text" name="tenloai" value="" class="form-control">
+            <input type="text" name="tenloai" value="{{$kindsport->tenloai}}" class="form-control">
         </div>
         
         <button class="btn btn-warning" type="submit">Cập Nhật</button>

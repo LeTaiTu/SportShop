@@ -46,7 +46,9 @@ class KindsportController extends Controller
     public function store(Request $request)
     {
         $rules = ['tenloai' => 'required|max:191'];
-        $request->validate($rules);
+        $mess = ['tenloai.required' => 'Tên loại sản phẩm phải nhập vào!',
+                'tenloai.max' => 'Tên Loại quá dài!'];
+        $request->validate($rules,$mess);
         $kindsport = new Kind_sport;
         $kindsport->fill($request->all());
         $kindsport->save();
@@ -86,7 +88,9 @@ class KindsportController extends Controller
     public function update(Request $request, $id)
     {
         $rules = ['tenloai' => 'required|max:191'];
-        $request->validate($rules);
+        $mess = ['tenloai.required' => 'Tên loại sản phẩm phải nhập vào!',
+                'tenloai.max' => 'Tên Loại quá dài!'];
+        $request->validate($rules,$mess);
         $kindsport = Kind_sport::findOrFail($id);
         $kindsport->tenloai = $request->tenloai;
         $kindsport->save();

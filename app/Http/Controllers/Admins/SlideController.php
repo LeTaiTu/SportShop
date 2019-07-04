@@ -46,10 +46,19 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = ['name_slide' => 'required|max:191',
+        $rules = ['name_slide' => 'required|unique:slides,name_slide|max:191',
                     'id_kind' => 'numeric',
-                    'image' => 'image|max:2048'];
-        $request->validate($rules);
+                    'image' => 'required|image|max:2048'];
+
+        $mess = ['name_slide.required' => 'Tên slide không được để trống!',
+                'name_slide.unique' => 'Tên slide đã tồn tại!',
+                'name_slide.max' => 'Tên slide quá dài!',
+                'id_kind.numeric' => 'Id phải là số!',
+                'image.required' => 'Vui lòng chọn hình ảnh đại diện!',
+                'image.image' => 'Hình ảnh không đúng định dạng!',
+                'image.max' => 'Hình ảnh có kích thước quá lớn!'];
+
+        $request->validate($rules,$mess);
         $slide = new Slide;
         $file = $request->file('image');
         $image = time()."-".$file->getClientOriginalName();
@@ -96,15 +105,31 @@ class SlideController extends Controller
         $rules = ['name_slide' => 'required|max:191',
                     'id_kind' => 'numeric',
                     'image' => 'image|max:2048'];
-        $request->validate($rules);
+                    
+        $mess = ['name_slide.required' => 'Tên slide không được để trống!',
+                'name_slide.max' => 'Tên slide quá dài!',
+                'id_kind.numeric' => 'Id phải là số!',
+                'image.image' => 'Hình ảnh không đúng định dạng!',
+                'image.max' => 'Hình ảnh có kích thước quá lớn!'];
+
+        $request->validate($rules,$mess);
+
         $slide = Slide::findOrFail($id);
-        $file = $request->file('image');
-        $image = time()."-".$file->getClientOriginalName();
-        $file->storeAs('public/slide', $image);
+
+        $old_image = $slide->image;
+        
         $slide->fill($request->all());
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $image = time()."-".$file->getClientOriginalName();
+            $file->storeAs('/public/slide', $image);
+        }
+        else {
+            $image = $old_image;
+        }
         $slide->image = $image;
         $slide->save();
-        return redirect('admin/slide')->with('success', "Cập Nhật Thành Công!");
+        return redirect('admin/slide')->with('success', 'Cập Nhật Thành Công!');
     }
 
     /**
