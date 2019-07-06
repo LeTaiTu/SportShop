@@ -38,7 +38,8 @@
     	</form>
     </div>
 
-    <table class="table table-hover table-bordered table-striped">
+	<table class="table table-hover table-bordered table-striped">
+		
         <thead>
             <tr >
                 <th style="text-align: center" >ID</th>
@@ -76,7 +77,10 @@
 		    	</tr>
 		    @endforelse
 	    </tbody>
+
     </table>
+
+    
     <div class="col-md-12 text-center">
         <!-- paging -->
         {{$account->links()}}

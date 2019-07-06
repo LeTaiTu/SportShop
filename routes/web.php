@@ -65,8 +65,11 @@ Route::get('/contact', function(){
 
 // group admin
 Route::prefix('admin')->group(function() {
-	Route::get('/', "\App\Http\Controllers\Admins\LoginController@index");
-	Route::post('/', "\App\Http\Controllers\Admins\LoginController@store")->name('admin');
+    // login
+	Route::get('/', "\App\Http\Controllers\Admins\LoginController@showLoginForm");
+	Route::post('/', "\App\Http\Controllers\Admins\LoginController@login")->name('admin');
+    // logout
+    Route::get('/logout', "\App\Http\Controllers\Admins\LoginController@logout")->name('admin.logout');
     // trang chu admin
     Route::get('/home', function(){ 
         return view('admin.home');})->name('admin.home');

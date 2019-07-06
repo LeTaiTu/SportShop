@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admins;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Session;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -14,93 +15,43 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('admin.login');
-    }
+    use AuthenticatesUsers;
 
     /**
-     * Show the form for creating a new resource.
+     * Where to redirect users after login.
      *
-     * @return \Illuminate\Http\Response
+     * @var string
      */
-    public function create()
-    {
-        //
-    }
+    protected $redirectTo = '/admin/home';
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new controller instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function store(Request $request)
-    {
 
-        $username = $request->username;
-        $password = $request->password;
-        $admin = Admin::get();
-        foreach ($admin as $key => $value) {
-            $user_data = $value->username;
-            $pass_data = $value->password;
-            $id_admin = $value->id;
-            //session('id_admin') = $id_admin;
-            $name_admin = $value->name;
-            //session('name_admin') = $name_admin;
-            $image_admin = $value->image;
-            if (($username == $user_data) && ($password == $pass_data)) {
-                session(['name_admin' => $name_admin]);
-                session(['id_admin' => $id_admin]);
-                session(['image_admin' => $image_admin]);
-                return view('admin.home', compact('id_admin','name_admin', 'image_admin'));
-            }
-        }
-        return view('admin.login');
+    public function showLoginForm(Request $request) {
+        
+            return view('admin.login');
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function username() {
+        return 'username';
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    protected function guard()
     {
-        //
+        return Auth::guard('admin');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function logout(Request $request) {
+      Auth::logout();
+      return redirect('/admin');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function __construct()
     {
-        //
+        $this->middleware('guest')->except('logout');
     }
 }

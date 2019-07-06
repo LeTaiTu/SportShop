@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use Hash;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -82,6 +84,7 @@ class AccountController extends Controller
        
         $account->fill($request->all());
         $account->image = $image;
+        $account->password = Hash::make($request->password);
         $account->save();
         return redirect('admin/account')->with('success', "Tạo Mới Thành Công");
     }
@@ -186,7 +189,15 @@ class AccountController extends Controller
     public function destroy($id)
     {
         $account = Admin::findOrFail($id);
-        $account->delete();
-        return redirect('admin/account')->with('success', "Xóa Thành Công!");
+        
+        if ($account->username == Auth::guard('admin')->user()->username ) {
+            $account->delete();
+            return redirect('admin/');
+        }
+        else {
+            $account->delete();
+            return redirect('admin/account')->with('success', "Xóa Thành Công!");
+        }
+        
     }
 }
