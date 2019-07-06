@@ -15,6 +15,10 @@
         {{-- bao mat form khi dung form csrf --}}
         @csrf
         <div class="form-group">
+            <label>ID Loại Sản Phẩm</label>
+            <input type="number" name="id" value="{{$kindsport->id}}" class="form-control">
+        </div>
+        <div class="form-group">
             <label>Tên Loại Sản Phẩm</label>
             <input type="text" name="tenloai" value="{{$kindsport->tenloai}}" class="form-control">
         </div>

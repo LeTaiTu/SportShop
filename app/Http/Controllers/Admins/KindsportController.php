@@ -93,6 +93,7 @@ class KindsportController extends Controller
         $request->validate($rules,$mess);
         $kindsport = Kind_sport::findOrFail($id);
         $kindsport->tenloai = $request->tenloai;
+        $kindsport->id = $request->id;
         $kindsport->save();
         return redirect('admin/kindsport')->with('success', "Cập Nhật Thành Công!");
     }
