@@ -44,13 +44,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="/storage/account/{{Auth::guard('admin')->user()->image}}" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">{{Auth::guard('admin')->user()->name}}</span>
+                                    <img src="/storage/account/{{session('image_admin')}}" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">{{session('name_admin')}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="/storage/account/{{Auth::guard('admin')->user()->image}}" class="img-circle" alt="User Image">
+                                        <img src="/storage/account/{{session('image_admin')}}" class="img-circle" alt="User Image">
                                         <p>
                                             Web Administrator
                                         </p>
@@ -58,7 +58,7 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="{{route('account.changepass',Auth::guard('admin')->user()->id)}}" class="btn btn-default btn-flat">Đổi mật khẩu</a>
+                                            <a href="" class="btn btn-default btn-flat">Đổi mật khẩu</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="{{route('admin.logout')}}" class="btn btn-default btn-flat">Đăng xuất</a>
@@ -77,10 +77,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="/storage/account/{{Auth::guard('admin')->user()->image}}" class="img-circle" alt="User Image">
+                            <img src="/storage/account/{{session('image_admin')}}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>{{Auth::guard('admin')->user()->name}}</p>
+                            <p>{{session('name_admin')}}</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>

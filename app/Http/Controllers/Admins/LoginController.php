@@ -7,14 +7,21 @@ use App\Models\Admin;
 use Session;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+// use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
     use AuthenticatesUsers;
 
     /**
@@ -31,9 +38,10 @@ class LoginController extends Controller
      */
 
     public function showLoginForm(Request $request) {
-        
-            return view('admin.login');
-        
+        if (Auth::check()) {
+            return view('admin.home');
+        }
+        return view('admin.login');
     }
 
     public function username() {
@@ -45,13 +53,32 @@ class LoginController extends Controller
         return Auth::guard('admin');
     }
 
-    public function logout(Request $request) {
-      Auth::logout();
-      return redirect('/admin');
-    }
+    public function store(Request $request)
+    {
 
+        $username = $request->username;
+        $password = $request->password;
+        $admin = Admin::get();
+        foreach ($admin as $key => $value) {
+            $user_data = $value->username;
+            $pass_data = $value->password;
+            $id_admin = $value->id;
+            //session('id_admin') = $id_admin;
+            $name_admin = $value->name;
+            //session('name_admin') = $name_admin;
+            $image_admin = $value->image;
+            if (($username == $user_data) && ($password == $pass_data)) {
+                session(['name_admin' => $name_admin]);
+                session(['id_admin' => $id_admin]);
+                session(['image_admin' => $image_admin]);
+                return view('admin.home', compact('id_admin','name_admin', 'image_admin'));
+            }
+        }
+        return view('admin.login');
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+
 }

@@ -67,7 +67,7 @@ Route::get('/contact', function(){
 Route::prefix('admin')->group(function() {
     // login
 	Route::get('/', "\App\Http\Controllers\Admins\LoginController@showLoginForm");
-	Route::post('/', "\App\Http\Controllers\Admins\LoginController@login")->name('admin');
+	Route::post('/', "\App\Http\Controllers\Admins\LoginController@store")->name('admin');
     // logout
     Route::get('/logout', "\App\Http\Controllers\Admins\LoginController@logout")->name('admin.logout');
     // trang chu admin
