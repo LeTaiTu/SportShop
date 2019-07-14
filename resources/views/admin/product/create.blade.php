@@ -15,9 +15,9 @@
  {{-- bao mat form khi dung form csrf --}}
  @csrf
 <div class="form-group">
-    <select name="kind_sport_id" class="form-control" style="width: 150px">
+    <select name="key" class="form-control" style="width: 150px">
         @foreach($kind_sports as $kind_sport)
-        <option value="{{$kind_sport->id}}">{{$kind_sport->tenloai}}</option>
+        <option value="{{$kind_sport->key}}">{{$kind_sport->tenloai}}</option>
         @endforeach
     </select>
 </div> 

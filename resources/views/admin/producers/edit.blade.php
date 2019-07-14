@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label>Active</label>
-            <input type="number" name="active" value="{{$producers->active}}" class="form-control">
+            <input type="number" name="active" min="0" max="1" value="{{$producers->active}}" class="form-control">
         </div>
         
     	<div class="form-group">

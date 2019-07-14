@@ -40,32 +40,58 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        if ($request->input('kind_sport_id') != null) {
-            $kind = $request->input('kind_sport_id');
-            if ($kind == 1) {
-                session(['kind'=>$kind]);
-                return redirect()->action('\App\Http\Controllers\Admins\ProductController@createClothes', ['kind' => $kind]);
+        if ($request->input('key') != null) {
+            $kind = $request->input('key');
+            $data = KindSport::where('key', $kind)->first();
+            $_id = $data->id;
+            // var_dump($_id);die();
+            if ($kind == 'quanao') {
+                session(['kind'=>$_id]);
+                return redirect()->action('\App\Http\Controllers\Admins\ProductController@createClothes', ['kind' => $_id]);
             }
-            else{
-                return "Found";
-            }
-        } else {
-            $kind_sports = KindSport::get(); 
-            return view('admin.product.create',[
-                'kind_sports' => $kind_sports,
-            ]);
+            elseif ($kind== 'giay') {
+               session(['kind'=>$_id]);
+               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createShoes', ['kind' => $_id]);
+           }
+           elseif ($kind== 'thucpham') {
+               session(['kind'=>$_id]);
+               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createFoods', ['kind' => $_id]);
+           }
+           elseif ($kind== 'phukien') {
+               session(['kind'=>$_id]);
+               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createClothes', ['kind' => $_id]);
+           }
+           else{
+            return "Found";
         }
-        
-        
-    }
-
-    public function createClothes()
-    {
-        $producers = Producer::get();
-        return view('admin.product.createClothes',[
-            'producers' => $producers,
+    } else {
+        $kind_sports = KindSport::get(); 
+        return view('admin.product.create',[
+            'kind_sports' => $kind_sports,
         ]);
     }
+}
+
+public function createClothes(){
+    $producers = Producer::get();
+    return view('admin.product.createClothes',[
+        'producers' => $producers,
+    ]);
+}
+public function createShoes(){
+    $producers = Producer::get();
+    return view('admin.product.createShoes',[
+        'producers' => $producers,
+    ]);
+}
+public function createFoods(){
+    $producers = Producer::get();
+    return view('admin.product.createFoods',[
+        'producers' => $producers,
+    ]);
+
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -107,6 +133,76 @@ class ProductController extends Controller
         session()->forget('kind');
         return redirect('admin/product')->with('success', "Thêm mới thành công");
     }
+
+    public function storeshoes(Request $request){
+     $rules = [
+        'name_pro' => 'required|string|max:191',
+        'kind_sport_id' => 'required|max:191',
+        'producer_id' => 'required|max:191',
+        'content' => 'required|max:191',
+    ];        
+    $request->validate($rules);
+    $sizes = $request->input('size');
+    $quantities = $request->input('quantity');
+        // var_dump($sizes);die();
+
+    $product = new Product;
+    $product->fill($request->all());
+    $file = $request->file('image');
+    $image = time() . "-". $file->getClientOriginalName();
+    $file->storeAs('public/product', $image);
+    $product->image = $image;
+    $product->save();
+        // $product_id = $product->id;
+
+    for ($i=0; $i < count($sizes); $i++) { 
+        $prDetails = new ProductDetail;
+        $prDetails->product_id = $product->id;
+        $prDetails->size = $sizes[$i];
+        $prDetails->quantity = $quantities[$i];
+        $prDetails->original_price = $request->input('original_price');
+        $prDetails->sell_price = $request->input('sell_price');
+        $prDetails->save();
+    }
+    session()->forget('kind');
+    return redirect('admin/product')->with('success', "Thêm mới thành công");
+}
+
+public function storefoods(Request $request){
+    $rules = [
+        'name_pro' => 'required|string|max:191',
+        'kind_sport_id' => 'required|max:191',
+        'producer_id' => 'required|max:191',
+        'content' => 'required|max:191',
+    ];        
+    $request->validate($rules);
+    $sizes = $request->input('size');
+    $quantities = $request->input('quantity');
+    $price1 = $request->input('original_price');
+    $price2 = $request->input('sell_price');
+        // var_dump($sizes);die();
+
+    $product = new Product;
+    $product->fill($request->all());
+    $file = $request->file('image');
+    $image = time() . "-". $file->getClientOriginalName();
+    $file->storeAs('public/product', $image);
+    $product->image = $image;
+    $product->save();
+        // $product_id = $product->id;
+
+    for ($i=0; $i < count($sizes); $i++) { 
+        $prDetails = new ProductDetail;
+        $prDetails->product_id = $product->id;
+        $prDetails->size = $sizes[$i];
+        $prDetails->quantity = $quantities[$i];
+        $prDetails->original_price = $price1[$i];
+        $prDetails->sell_price = $price2[$i];
+        $prDetails->save();
+    }
+    session()->forget('kind');
+    return redirect('admin/product')->with('success', "Thêm mới thành công");
+}
 
     /**
      * Display the specified resource.

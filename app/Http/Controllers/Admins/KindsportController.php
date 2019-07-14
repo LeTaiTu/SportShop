@@ -15,7 +15,7 @@ class KindsportController extends Controller
      */
     public function index()
     {
-        $kindsport = Kind_sport::query()->orderBy('created_at', 'desc')->paginate(3);
+        $kindsport = Kind_sport::query()->orderBy('created_at', 'asc')->paginate(5);
         return view('admin.kind_sports.index', compact('kindsport'));
     }
 
@@ -23,7 +23,7 @@ class KindsportController extends Controller
     public function search(Request $req)
     {
         $kindsport = Kind_sport::where('tenloai','like',"%".$req->txtsearch."%")
-        ->orderBy('created_at', 'desc')->paginate(3);
+        ->orderBy('created_at', 'desc')->paginate(5);
         return view('admin.kind_sports.index', compact('kindsport'));
     }
     /**
@@ -45,7 +45,10 @@ class KindsportController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = ['tenloai' => 'required|max:191'];
+        $rules = [
+            'tenloai' => 'required|max:191',
+            'key' => 'required',
+        ];
         $mess = ['tenloai.required' => 'Tên loại sản phẩm phải nhập vào!',
                 'tenloai.max' => 'Tên Loại quá dài!'];
         $request->validate($rules,$mess);
@@ -87,12 +90,17 @@ class KindsportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = ['tenloai' => 'required|max:191'];
+        
+        $rules = [
+            'tenloai' => 'required|max:191',
+            'key' => 'required',
+        ];
         $mess = ['tenloai.required' => 'Tên loại sản phẩm phải nhập vào!',
                 'tenloai.max' => 'Tên Loại quá dài!'];
         $request->validate($rules,$mess);
         $kindsport = Kind_sport::findOrFail($id);
         $kindsport->tenloai = $request->tenloai;
+        $kindsport->key = $request->key;
         $kindsport->id = $request->id;
         $kindsport->save();
         return redirect('admin/kindsport')->with('success', "Cập Nhật Thành Công!");

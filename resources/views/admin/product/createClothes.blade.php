@@ -87,7 +87,7 @@
 <button class="btn btn-warning" type="submit">Tạo Mới</button>
 <button class="btn btn-info" type="reset">Nhập Lại</button>
 <a class="btn btn-danger" href="{{route('admin.product')}}">Trở Lại</a>
-</form>\
+</form>
 <script type="text/javascript">
     document.getElementById('size-s').onclick = function(e){
         if(this.checked){

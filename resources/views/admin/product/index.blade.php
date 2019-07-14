@@ -29,8 +29,13 @@
 			<td>
 				@forelse($details as $detail)
 				@if($product->id==$detail->product_id)
+				@if($product->kind_sport->key == 'thucpham')
+				{{ $detail->size. ' gam' }}
+				<br>
+				@else
 				{{ $detail->size }}
 				<br>
+				@endif
 				@endif
 				@empty
 				"Trống";
