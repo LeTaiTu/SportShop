@@ -43,14 +43,14 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="form_name">Họ Tên </label>
-							<input id="form_name" type="text" name="name" class="form-control" placeholder="Nhập thông tin họ tên *" required="required" data-error="FullName is required." value="{{Auth::check() ? Auth::user()->name : ""}}">
+							<input id="form_name" type="text" name="name" class="form-control" placeholder="Nhập thông tin họ tên *" required="required" data-error="FullName is required." value="{{Auth::guard('users')->check() ? Auth::guard('users')->user()->name : ""}}">
 							<div class="help-block with-errors"></div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="form_lastname">Số Điện Thoại </label>
-							<input id="form_lastname" type="number" name="phone" class="form-control" placeholder="Nhập số điện thoại *" required="required" data-error="Phone number is required." value="{{Auth::check() ? Auth::user()->phone : ""}}">
+							<input id="form_lastname" type="number" name="phone" class="form-control" placeholder="Nhập số điện thoại *" required="required" data-error="Phone number is required." value="{{Auth::guard('users')->check() ? Auth::guard('users')->user()->phone : ""}}">
 							<div class="help-block with-errors"></div>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="form_email">Email </label>
-							<input id="form_email" type="email" name="email" class="form-control" placeholder="Nhập Email Của Bạn *" required="required" data-error="Valid email is required." value="{{Auth::check() ? Auth::user()->email : ""}}">
+							<input id="form_email" type="email" name="email" class="form-control" placeholder="Nhập Email Của Bạn *" required="required" data-error="Valid email is required." value="{{Auth::guard('users')->check() ? Auth::guard('users')->user()->email : ""}}">
 							<div class="help-block with-errors" ></div>
 						</div>
 					</div>

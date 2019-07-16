@@ -10,10 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 // trang chu
-Route::get('/', function () {
-    return view('home.home');
-})->name('home');
+Route::get('/', "\App\Http\Controllers\HomeController@index")->name('home');
 
 // login trang chu -> khach hang
 Route::get('/login_user', function () {
@@ -63,6 +62,11 @@ Route::get('/contact', function(){
 	return view('contact');
 })->name('contact');
 
+// chi tiet san pham
+    Route::get('/{id}/{size}/detail', "\App\Http\Controllers\CartController@detail")->name('detail.product');
+// them vao gio hang
+    Route::post('/{id}/{size}/detail', "\App\Http\Controllers\CartController@detail")->name('detail.product');
+    
 // group admin
 Route::prefix('admin')->group(function() {
     // login
@@ -91,13 +95,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
     Route::post('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
     Route::get('/product/createClothes', "\App\Http\Controllers\Admins\ProductController@createClothes")->name('product.createClothes');
-    Route::get('/product/createShoes', "\App\Http\Controllers\Admins\ProductController@createShoes")->name('product.createShoes');
-    Route::get('/product/createFoods', "\App\Http\Controllers\Admins\ProductController@createFoods")->name('product.createFoods');
-
     Route::post('/product/createClothes',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
-    Route::post('/product/createShoes',"\App\Http\Controllers\Admins\ProductController@storeshoes")->name('product.storeshoes');
-    Route::post('/product/createFoods',"\App\Http\Controllers\Admins\ProductController@storefoods")->name('product.storefoods');
-    
     Route::get('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@edit")->name('product.edit');
     Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@update")->name('product.update');
 
@@ -142,5 +140,5 @@ Route::prefix('admin')->group(function() {
     Route::get('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@edit")->name('producer.edit');
     Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerCo  ntroller@update")->name('producer.update');
 });
-Auth::routes();
+
 
