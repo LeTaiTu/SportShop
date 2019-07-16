@@ -65,7 +65,7 @@ Route::get('/contact', function(){
 // chi tiet san pham
     Route::get('/{id}/{size}/detail', "\App\Http\Controllers\CartController@detail")->name('detail.product');
 // them vao gio hang
-    Route::post('/{id}/{size}/detail', "\App\Http\Controllers\CartController@detail")->name('detail.product');
+    Route::post('/{id}/{size}/detail', "\App\Http\Controllers\CartController@getAddtoCart")->name('detail.product');
     
 // group admin
 Route::prefix('admin')->group(function() {

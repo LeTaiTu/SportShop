@@ -47,7 +47,9 @@
                 </div>
                 <div class="cart">
                     <img src="{{asset('asset_admin/images/icon-cart.png')}}" alt="">
-                    <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">80</p>
+                    <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">@if(Session::has('cart')){{Session('cart')->totalQty}}
+                                @else Empty
+                                @endif</p>
                     <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;">Giỏ hàng</p>
                 </div>
                 @if(Auth::guard('users')->check())

@@ -51,7 +51,7 @@ class CartController extends Controller
     public function getAddtoCart(Request $req, $id, $size) {
         $product = Product::find($id);
         $pro_detail = ProductDetail::where('product_id',$id)->where('size',$size)->get();
-        //@dd($detail_size);
+        // @dd($pro_detail);
         
         $oldCart = Session('cart') ? Session::get('cart') : null; 
         $cart = new Cart($oldCart);
