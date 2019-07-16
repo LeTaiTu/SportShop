@@ -1,6 +1,6 @@
 @extends('index')
 @section('content')
-	<!-- content -->
+    <!-- content -->
     <div id="content" class="container">
         <!-- banner 1 -->
         <div class="row">
@@ -138,8 +138,8 @@
         <div id="product_frame" class="row">
             <div class="category col-md-12">
                 <ul>
-                    <li class="active"><a data-toggle="pill" href="#aococ">ÁO CỘC TAY</a></li>
-                    <li><a data-toggle="pill" href="#ao">ÁO REALMARID</a></li>
+                    <li class="active"><a data-toggle="pill" href="#quanao">Quần Áo</a></li>
+                    
                     <li><a data-toggle="pill" href="#binhnuoc">BÌNH NƯỚC</a></li>
                     <li><a data-toggle="pill" href="#giay">GIÀY</a></li>
                     <li><a data-toggle="pill" href="#tat">TẤT</a></li>
@@ -147,292 +147,59 @@
                 </ul>
             </div>
             <div class="tab-content">
-                <div id="aococ" class="products tab-pane fade in active col-md-12 col-xs-12">
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
 
+                <div id="quanao" class="products tab-pane fade in active col-md-12 col-xs-12">
+                    @forelse($pro_clothers as $product)
+                        @forelse($product_details as $detail)
+                            @if($product->id == $detail->product_id)
+                                <div class="card col-md-2 col-sm-4 col-xs-6">
+                                    @if($detail->original_price - $detail->sell_price > 0)
+                                    <a href="{{route('detail.product', [$product->id, $detail->size])}}" style="text-decoration: none" target="blank">
+                                    <div class="card_img">
+                                        <img src="{{asset('storage/product/'.$product->image)}}">
+                                        <div class="sale">
+                                            <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
+                                            <p>GIẢM {{number_format($detail->original_price - $detail->sell_price)}} đ</p>
+                                        </div>
+                                    </div>
+                                    <div class="card_text row" style="font-size: 16px; margin-bottom: 5px;margin-top: 5px">
+                                        <p>{{$product->name_pro}}</p>
+                                    </div>
+                                    <div class="card_text row">
+                                        <p style="margin-bottom: 10px;">Giá
+                                        <b class="price">{{number_format($detail->sell_price)}} đ <span class="discount"> - {{number_format($detail->original_price)}} đ</span></b>
+                                        </p>
+                                    </div>
+                                    </a>
+                                    @else
+                                    <a href="{{route('detail.product', [$product->id, $detail->size])}}" style="text-decoration: none" target="blank">
+                                    <div class="card_img">
+                                        <img src="{{asset('storage/product/'.$product->image)}}">
+                                        <div class="new_products">
+                                            <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
+                                            <p>SẢN PHẨM MỚI</p>
+                                        </div>
+                                    </div>
+                                    <div class="card_text row" style="font-size: 16px; margin-bottom: 5px;margin-top: 5px">
+                                        <p>{{$product->name_pro}}</p>
+                                    </div>
+                                    <div class="card_text row">
+                                        <p style="margin-bottom: 10px;">Giá
+                                        <b class="price">{{number_format($detail->sell_price)}} đ</b>
+                                        </p>
+                                    </div>
+                                    </a>
+                                    @endif
+                                </div>
+                            @endif
+                        @empty
+                            <p>Không có dữ liệu</p>
+                        @endforelse
+                    @empty 
+                    @endforelse
+               
+                </div>
 
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao2.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                </div>
-                <div id="ao" class="products tab-pane fade col-md-12 col-xs-12">
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="sale">
-                                <img src="{{asset('asset_admin/images/icon-sale.png')}}" alt="">
-                                <p>GIẢM 10.000 đ</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">40.000 đ <span class="discount"> - 50.000 đ</span></b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                    <div class="card col-md-2 col-sm-4 col-xs-6">
-                        <div class="card_img">
-                            <img src="{{asset('asset_admin/images/ao3.jpg')}}">
-                            <div class="new_products">
-                                <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
-                                <p>SẢN PHẨM MỚI</p>
-                            </div>
-                        </div>
-                        <div class="card_text row">
-                            
-                            <p style="margin-bottom: 10px;">Giá</p>
-                            <b class="price">12.500 đ</b>
-                        </div>
-                    </div>
-                </div>
                 <div id="binhnuoc" class="products tab-pane fade col-md-12 col-xs-12">
                     <div class="card col-md-2 col-sm-4 col-xs-6">
                         <div class="card_img">

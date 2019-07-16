@@ -45,7 +45,7 @@
                 <th style="text-align: center" >ID</th>
 				<th style="text-align: center" >Tên Tài Khoản</th>
 				<th style="text-align: center" >Username</th>
-				<th style="text-align: center" >Password</th>
+				{{-- <th style="text-align: center" >Password</th> --}}
 				<th style="text-align: center" >Hình Ảnh</th>
 				<th style="text-align: center" >Active</th>
 				<th style="text-align: center" >Email</th>
@@ -62,7 +62,7 @@
 	    		<td style="text-align: center">{{$acc->id}}</td>
 	    		<td style="text-align: center">{{$acc->name}}</td>
 	    		<td style="text-align: center">{{$acc->username}}</td>
-	    		<td style="text-align: center">{{$acc->password}}</td>
+	    		{{-- <td style="text-align: center">{{$acc->password}}</td> --}}
 	    		<td style="text-align: center"><img src="{{filter_var($acc->image,FILTER_VALIDATE_URL) ? asset($acc->image) : asset('storage/account/'.$acc->image)}}" width="80px"></td>
 	    		<td style="text-align: center">{{$acc->active}}</td>
 	    		<td style="text-align: center">{{$acc->email}}</td>

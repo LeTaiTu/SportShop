@@ -6,11 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminSeeder' => $baseDir . '/database/seeds/AdminSeeder.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admins\\AccountController' => $baseDir . '/app/Http/Controllers/Admins/AccountController.php',
+    'App\\Http\\Controllers\\Admins\\ContactController' => $baseDir . '/app/Http/Controllers/Admins/ContactController.php',
     'App\\Http\\Controllers\\Admins\\KindsportController' => $baseDir . '/app/Http/Controllers/Admins/KindsportController.php',
     'App\\Http\\Controllers\\Admins\\LoginController' => $baseDir . '/app/Http/Controllers/Admins/LoginController.php',
+    'App\\Http\\Controllers\\Admins\\MemberController' => $baseDir . '/app/Http/Controllers/Admins/MemberController.php',
+    'App\\Http\\Controllers\\Admins\\ProducerController' => $baseDir . '/app/Http/Controllers/Admins/ProducerController.php',
     'App\\Http\\Controllers\\Admins\\ProductController' => $baseDir . '/app/Http/Controllers/Admins/ProductController.php',
     'App\\Http\\Controllers\\Admins\\SlideController' => $baseDir . '/app/Http/Controllers/Admins/SlideController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -29,6 +33,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
+    'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\KindSport' => $baseDir . '/app/Models/KindSport.php',
     'App\\Models\\Kind_sport' => $baseDir . '/app/Models/Kind_sport.php',
     'App\\Models\\Producer' => $baseDir . '/app/Models/Producer.php',

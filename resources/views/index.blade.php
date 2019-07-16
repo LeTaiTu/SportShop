@@ -14,8 +14,8 @@
     {{-- them thu cong --}}
     <link rel="stylesheet" href="{{asset('asset_admin/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset_admin/css/font-awesome.min.css')}}">
-    <script src="{{asset('asset_admin/js/jquery.min.js')}}"></script>
-    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}"></script>
+    {{-- <script src="{{asset('asset_admin/js/jquery.min.js')}}"></script>
+    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}"></script> --}}
     {{-- end manual --}}
     <link rel="stylesheet" href="{{asset('asset_admin/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset_admin/css/owl.theme.default.min.css')}}">
@@ -144,8 +144,8 @@
     </footer>
     <script src="{{asset('asset_admin/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('asset_admin/js/app.js')}}"></script>
-    <script src="{{asset('asset_admin/js/jquery.min.js')}}"></script>
-    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}"></script>
+    {{-- <script src="{{asset('asset_admin/js/jquery.min.js')}}"></script>
+    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}"></script> --}}
 </body>
 
 </html>

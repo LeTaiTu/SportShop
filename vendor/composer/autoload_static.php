@@ -381,11 +381,15 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
     );
 
     public static $classMap = array (
+        'AdminSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminSeeder.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admins\\AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/AccountController.php',
+        'App\\Http\\Controllers\\Admins\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/ContactController.php',
         'App\\Http\\Controllers\\Admins\\KindsportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/KindsportController.php',
         'App\\Http\\Controllers\\Admins\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/LoginController.php',
+        'App\\Http\\Controllers\\Admins\\MemberController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/MemberController.php',
+        'App\\Http\\Controllers\\Admins\\ProducerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/ProducerController.php',
         'App\\Http\\Controllers\\Admins\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/ProductController.php',
         'App\\Http\\Controllers\\Admins\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/SlideController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -404,6 +408,7 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
+        'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
         'App\\Models\\KindSport' => __DIR__ . '/../..' . '/app/Models/KindSport.php',
         'App\\Models\\Kind_sport' => __DIR__ . '/../..' . '/app/Models/Kind_sport.php',
         'App\\Models\\Producer' => __DIR__ . '/../..' . '/app/Models/Producer.php',

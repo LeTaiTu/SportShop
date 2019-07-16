@@ -28,10 +28,24 @@
             </select>
         </div>
         <div class="form-group">
+            <label>Chi Tiết Sản Phẩm</label>
+            <br>
+            <select name="id_details" class="form-control">
+            @foreach($products as $pd)
+                <option value="{{$pd->id}}">{{$pd->name_pro}}</option>
+            @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label>Hình Ảnh</label>
             <img src="{{asset('/storage/slide/'.$slide->image)}}" width="80">
             <input type="file" name="image" class="form-control">
         </div>
+        {{-- <div class="form-group">
+            <label>Chọn ảnh hiển thị đầu tiên : </label><br>
+            <input type="radio" name="first_pic" value="1"> Hiển thị ảnh đầu tiên.<br>
+            <input type="radio" name="first_pic" value="0"> Hiển thị thứ hai.<br>
+        </div> --}}
         <button class="btn btn-warning" type="submit">Cập Nhật</button>
         <a class="btn btn-danger" href="{{route('admin.slide')}}">Trở Lại</a>
     </form>

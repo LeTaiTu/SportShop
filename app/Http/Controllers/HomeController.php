@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Hash;
 use Auth;
+use App\Models\Product;
+use App\Models\ProductDetail;
+use App\Models\Slide;
 
 class HomeController extends Controller
 {
@@ -17,7 +20,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        $pro_clothers = Product::where('kind_sport_id',1)->get();
+        
+        $product_details = ProductDetail::query()->paginate(5);
+        return view('home.home',compact('pro_clothers','product_details'));
     }
 
     
