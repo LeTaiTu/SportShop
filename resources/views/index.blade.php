@@ -46,11 +46,12 @@
                     <p style="position: absolute; left: 52px; font-size: 16px; top: 16px; font-weight: bold;">1900.1234</p>
                 </div>
                 <div class="cart">
-                    <img src="{{asset('asset_admin/images/icon-cart.png')}}" alt="">
+                <a href="{{route('order.product')}}"><img src="{{asset('asset_admin/images/icon-cart.png')}}" alt="">
                     <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">@if(Session::has('cart')){{Session('cart')->totalQty}}
-                                @else Empty
+                                @else 0
                                 @endif</p>
                     <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;">Giỏ hàng</p>
+                </a>  
                 </div>
                 @if(Auth::guard('users')->check())
                     

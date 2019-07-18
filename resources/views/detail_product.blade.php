@@ -77,7 +77,7 @@
 					<span>Số lượng:</span>
 					<li>
 						<input class="quantity-minus" style="border-right: none;" type="button" value="-">
-						<input type="text" style="width: 50px;" class="quantity" value="1">
+						<input type="text" name="quantity" style="width: 50px;" class="quantity" value="1">
 						<input class="quantity-plus" style="border-left: none;" type="button" value="+">
 					</li>
 					

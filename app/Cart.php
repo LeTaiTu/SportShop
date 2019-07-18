@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Product;
+
 class Cart
 {
 	public $items = null;
@@ -14,38 +16,41 @@ class Cart
 			$this->items = $oldCart->items;
 			$this->totalQty = $oldCart->totalQty;
 			$this->totalPrice = $oldCart->totalPrice;
+			$this->totalPricePromotion = $oldCart->totalPricePromotion;
 		}
 	}
 
-	 public function add($item, $id){
+	 public function add($item, $id, $quantity){
        $price = 0;
-       // $price = $item->original_price;
-       $price = 50000;
-       $giohang = ['qty'=>0, 'price' => $price, 'item' => $item];
+       $promotion_price = 0;
+       $image = '';
+       $name = '';
+       $qty = 0;
+       // gio hang bao gom
+       // ten san pham
+       // hinh anh
+       // so luong lay tu trang dat hang
+       // gia ca
+       $product = Product::find($id);
+       $image = $product->image;
+       $name = $product->name_pro;
+       $price = $item->sell_price;
+       $original = $item->original_price;
+       $qty = $quantity;
+       $giohang = ['qty'=> $qty, 'image' => $image, 'name' => $name, 'ori_price' => $original, 'price' => $price, 'item' => $item];
        if($this->items){
-              if(array_key_exists($id, $this->items)){
-                     $giohang = $this->items[$id];
+              if(array_key_exists($item->id, $this->items)){
+                     $giohang = $this->items[$item->id];
               }
        }
-       $giohang['qty']++;
-       $giohang['price'] = $price * $giohang['qty'];
-       $this->items[$id] = $giohang;
+       //$giohang['qty']++;
+       //$giohang['price'] = $price * $giohang['qty'];
+       $this->items[$item->id] = $giohang;
        $this->totalQty++;
-       $this->totalPrice += $price;
+       $this->totalPrice += $price * $qty;
+       $this->totalPricePromotion += (($original - $price) * $qty);
  }
-	// public function add($item, $id){
-	// 	$giohang = ['qty'=>0, 'price' => $item->sell_price, 'item' => $item];
-	// 	if($this->items){
-	// 		if(array_key_exists($id, $this->items)){
-	// 			$giohang = $this->items[$id];
-	// 		}
-	// 	}
-	// 	$giohang['qty']++;
-	// 	$giohang['price'] = $item->sell_price * $giohang['qty'];
-	// 	$this->items[$id] = $giohang;
-	// 	$this->totalQty++;
-	// 	$this->totalPrice += $item->sell_price;
-	// }
+	
 	//xóa 1
 	public function reduceByOne($id){
 		$this->items[$id]['qty']--;

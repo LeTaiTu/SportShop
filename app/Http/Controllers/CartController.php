@@ -50,12 +50,12 @@ class CartController extends Controller
     // them vao gio hang
     public function getAddtoCart(Request $req, $id, $size) {
         $product = Product::find($id);
-        $pro_detail = ProductDetail::where('product_id',$id)->where('size',$size)->get();
+        $pro_detail = ProductDetail::where('product_id',$id)->where('size',$size)->first();
         // @dd($pro_detail);
-        
+        $quantity = $req->quantity;
         $oldCart = Session('cart') ? Session::get('cart') : null; 
         $cart = new Cart($oldCart);
-        $cart->add($pro_detail, $id);
+        $cart->add($pro_detail, $id, $quantity);
         if(count($cart->items) > 0){
             $req->session()->put('cart',$cart);
         }
@@ -63,9 +63,13 @@ class CartController extends Controller
             Session::forget('cart'); // bo session
         }
         //return redirect()->back();
-        return redirect('/');
+        return redirect('/'.$id.'/'.$size.'/detail');
     }
 
+    public function getOrder() {
+        
+        return view('cart');
+    }
     /**
      * Show the form for creating a new resource.
      *

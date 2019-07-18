@@ -66,7 +66,8 @@ Route::get('/contact', function(){
     Route::get('/{id}/{size}/detail', "\App\Http\Controllers\CartController@detail")->name('detail.product');
 // them vao gio hang
     Route::post('/{id}/{size}/detail', "\App\Http\Controllers\CartController@getAddtoCart")->name('detail.product');
-    
+// trang dat hang
+    Route::get('/order', "\App\Http\Controllers\CartController@getOrder")->name('order.product');
 // group admin
 Route::prefix('admin')->group(function() {
     // login
