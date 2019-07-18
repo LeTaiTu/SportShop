@@ -26,6 +26,7 @@ class Cart
        $image = '';
        $name = '';
        $qty = 0;
+       $size = '';
        // gio hang bao gom
        // ten san pham
        // hinh anh
@@ -34,10 +35,13 @@ class Cart
        $product = Product::find($id);
        $image = $product->image;
        $name = $product->name_pro;
+       $size = $item->size;
        $price = $item->sell_price;
        $original = $item->original_price;
        $qty = $quantity;
-       $giohang = ['qty'=> $qty, 'image' => $image, 'name' => $name, 'ori_price' => $original, 'price' => $price, 'item' => $item];
+
+       $giohang = ['qty'=> $qty, 'image' => $image, 'size' => $size, 'name' => $name, 'ori_price' => $original, 'price' => $price, 'item' => $item];
+      
        if($this->items){
               if(array_key_exists($item->id, $this->items)){
                      $giohang = $this->items[$item->id];

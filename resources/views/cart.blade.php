@@ -5,29 +5,34 @@
             <div class="info_cart col-md-8">
                 <p class="cart_title">GIỎ HÀNG <span>(@if(Session::has('cart')){{Session('cart')->totalQty}}@endif sản phẩm)</span></p>
                 {{-- @dd(Session('cart')->items); --}}
-                @forelse(Session('cart')->items->any() as $item)
+                
+                @forelse(Session('cart')->items as $it)
 
                 <div class="item_cart row">
                     <div class="col-md-2">
-                        <img class="img" src="" alt="">
+                        <img class="img" src="{{asset('storage/product/'.$it['image'])}}" alt="">
                     </div>
-                    <div class="content_item_cart col-md-7">
-                        <p>{{$item->name}}</p>
+                    <div class=" col-md-3" style="font-size: 20px;">
+                        <p>{{$it['name']}}</p>
                         
-                        <ul>
-                            <li>
-                                <button><img src="{{asset('asset_admin/images/icon-btn-delete.png')}}" alt=""></button>
-                            </li>
-                        </ul>
+                        
+                                <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hủy</button>
+                        
+                    </div>
+                    <div class="col-md-2">
+                        <p class="cart_price" style="font-size: 20px">Size {{$it['size']}} </p>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="cart_price" style="font-size: 20px">Số Lượng {{number_format($it['qty'])}} X </p>
                     </div>
                     <div class="col-md-3">
-                        <p class="cart_price">{{number_format($item->price)}} đ</p>
-                        <p class="cart_discount">{{number_format($item->original)}} đ</p>
+                        <p class="cart_price">{{number_format($it['price'])}} đ</p>
+                        <p class="cart_discount">{{number_format($it['ori_price'])}} đ</p>
                     </div>
                 </div>
                 @empty
                 Chưa có giỏ hàng nào.
-                @endforelse
+                @endforelse 
             </div>
             <div class="payment col-md-4">
                 <p class="payment_title">Giỏ hàng của bạn</p>
