@@ -59,7 +59,7 @@ class ProductController extends Controller
            }
            elseif ($kind== 'phukien') {
                session(['kind'=>$_id]);
-               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createClothes', ['kind' => $_id]);
+               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createAcces', ['kind' => $_id]);
            }
            else{
             return "Found";
@@ -87,6 +87,13 @@ public function createShoes(){
 public function createFoods(){
     $producers = Producer::get();
     return view('admin.product.createFoods',[
+        'producers' => $producers,
+    ]);
+
+}
+public function createAcces(){
+    $producers = Producer::get();
+    return view('admin.product.createAcces',[
         'producers' => $producers,
     ]);
 
@@ -202,6 +209,33 @@ public function storefoods(Request $request){
     }
     session()->forget('kind');
     return redirect('admin/product')->with('success', "Thêm mới thành công");
+}
+
+public function storeacces(Request $request){
+    $rules = [
+        'name_pro' => 'required|string|max:191',
+        'kind_sport_id' => 'required|max:191',
+        'producer_id' => 'required|max:191',
+        'content' => 'required|max:191',
+        'quantity' => 'required|numeric|min:0',
+        'original_price' => 'required|numeric|min:0',
+        'sell_price' => 'required|numeric|min:0',
+    ]; 
+    $request->validate($rules);
+    $product = new Product;
+    $product->fill($request->all());
+    $file = $request->file('image');
+    $image = time() . "-" . $file->getClientOriginalName();
+    $file->storeAs('public/product',$image);
+    $product->image = $image;
+    $product->save();
+
+    $prDetail = new ProductDetail;
+    $prDetail->fill($request->all());
+    $prDetail->product_id = $product->id;
+    $prDetail->save();
+    session()->forget('kind');
+    return redirect('admin/product')->with('success','Thêm mới thành công');
 }
 
     /**

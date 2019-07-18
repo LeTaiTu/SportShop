@@ -95,8 +95,17 @@ Route::prefix('admin')->group(function() {
     Route::get('/product', "\App\Http\Controllers\Admins\ProductController@index")->name('admin.product');
     Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
     Route::post('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
+
     Route::get('/product/createClothes', "\App\Http\Controllers\Admins\ProductController@createClothes")->name('product.createClothes');
+    Route::get('/product/createShoes', "\App\Http\Controllers\Admins\ProductController@createShoes")->name('product.createShoes');
+    Route::get('/product/createFoods', "\App\Http\Controllers\Admins\ProductController@createFoods")->name('product.createFoods');
+    Route::get('/product/createAcces', "\App\Http\Controllers\Admins\ProductController@createAcces")->name('product.createAcces');
+
     Route::post('/product/createClothes',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
+    Route::post('/product/createShoes',"\App\Http\Controllers\Admins\ProductController@storeshoes")->name('product.storeshoes');
+    Route::post('/product/createFoods',"\App\Http\Controllers\Admins\ProductController@storefoods")->name('product.storefoods');
+    Route::post('/product/createAcces',"\App\Http\Controllers\Admins\ProductController@storeacces")->name('product.storeacces');
+
     Route::get('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@edit")->name('product.edit');
     Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@update")->name('product.update');
 
