@@ -50,8 +50,9 @@
                     <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">@if(Session::has('cart')){{Session('cart')->totalQty}}
                                 @else 0
                                 @endif</p>
-                    <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;">Giỏ hàng</p>
-                </a>  
+                    <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;color: black">Giỏ hàng</p>
+                </a>
+                
                 </div>
                 @if(Auth::guard('users')->check())
                     

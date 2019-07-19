@@ -1,6 +1,30 @@
 @extends('index')
 @section('content')
-
+	@if(session()->has("success"))
+		<div class="alert alert-success">
+		    <ul>
+		        <li>{{session("success")}}</li>
+		    </ul>
+		</div>
+	@endif
+	@if(session()->has("error"))
+	    <div class="alert alert-danger">
+	        <ul>
+	            <li>{{session("error")}}</li>
+	        </ul>
+	    </div>
+    @endif
+	{{-- hien thi loi --}}
+	@if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach($errors->all() as $error)
+				{{-- trong laravel dung {{thay cho echo}} --}}
+				<li>{{$error}}</li> 
+				@endforeach
+			</ul>
+		</div>
+	@endif
 <div id="content_product_details" class="container">
 	<form action="{{route('detail.product',[$product->id,$get_size])}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
     @csrf

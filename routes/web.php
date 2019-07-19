@@ -68,6 +68,10 @@ Route::get('/contact', function(){
     Route::post('/{id}/{size}/detail', "\App\Http\Controllers\CartController@getAddtoCart")->name('detail.product');
 // trang dat hang
     Route::get('/order', "\App\Http\Controllers\CartController@getOrder")->name('order.product');
+// xoa gio hang
+    Route::get('/{id}/order', "\App\Http\Controllers\CartController@getDelItemCart")->name('order.delete');
+// thanh toan
+    Route::get('/payment', "\App\Http\Controllers\CartController@payment")->name('payment');
 // group admin
 Route::prefix('admin')->group(function() {
     // login

@@ -53,6 +53,9 @@ class CartController extends Controller
         $pro_detail = ProductDetail::where('product_id',$id)->where('size',$size)->first();
         // @dd($pro_detail);
         $quantity = $req->quantity;
+        if ($quantity > $pro_detail->quantity) {
+            return redirect('/'.$id.'/'.$size.'/detail')->with('error', "Số lượng vượt quá ".$pro_detail->quantity);
+        }
         $oldCart = Session('cart') ? Session::get('cart') : null; 
         $cart = new Cart($oldCart);
         $cart->add($pro_detail, $id, $quantity);
@@ -62,19 +65,37 @@ class CartController extends Controller
         else {
             Session::forget('cart'); // bo session
         }
-        //return redirect()->back();
+        // giam so luong san pham da dat di
+        $pro_detail->quantity -= $quantity;
+        $pro_detail->save();
         return redirect('/'.$id.'/'.$size.'/detail');
     }
 
     public function getOrder() {
-        
-        return view('cart');
+        if (session()->has('cart')) {
+            return view('cart');
+        }
+        else {
+            return redirect('/');
+        }
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function getDelItemCart($id) {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        Session::put('cart',$cart);
+        return redirect()->back();
+    }
+    
+    public function payment(Request $request) {
+        return view('/payment');
+    }
     public function create()
     {
         //
