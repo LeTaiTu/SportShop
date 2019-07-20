@@ -257,18 +257,28 @@ public function storeacces(Request $request){
      */
     public function edit($id)
     {
-        $products = Product::findOrFail($id);
+        session(['id'=>$id]);
+        $idkind = Product::findOrFail($id);
+        $kind = KindSport::where("id",$idkind->kind_sport_id)->first();
+        $_id = $kind->key;
+        if ($kind->key=='quanao') {
+            session(['_id'=>$_id]);
+            return redirect()->action('\App\Http\Controllers\Admins\ProductController@editAcces', ['id' => $id]);
+        }
+    }
+
+    public function editAcces(){
+        $products = Product::findOrFail(session('id'));
         $producers = Producer::where("active", 1)->get();
         $kind_sports = KindSport::get(); 
-        $prDetails = ProductDetail::where("product_id",$id)->get();
-        return view('admin.product.edit', [
+        $prDetails = ProductDetail::where("product_id",session('id'))->get();
+        return view('admin.product.editAcces', [
             'products'=>$products,
             'producers'=>$producers,
             'kind_sports'=>$kind_sports,
             'prDetails'=>$prDetails,
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -276,6 +286,12 @@ public function storeacces(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function updateacces(Request $request, $id)
+    {
+        
+    }
+
     public function update(Request $request, $id)
     {
         //

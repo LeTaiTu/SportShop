@@ -111,7 +111,9 @@ Route::prefix('admin')->group(function() {
     Route::post('/product/createAcces',"\App\Http\Controllers\Admins\ProductController@storeacces")->name('product.storeacces');
 
     Route::get('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@edit")->name('product.edit');
+    Route::get('/product/editAcces',"\App\Http\Controllers\Admins\ProductController@editAcces")->name('product.editAcces');
     Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@update")->name('product.update');
+    Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@updateacces")->name('product.updateacces');
 
     // trang kindsport
     Route::get('/kindsport',"\App\Http\Controllers\Admins\KindsportController@index")->name('admin.kindsport');
