@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-xs-3">Điện Thoại <span class="required">(*)</span></div>
                                 <div class="col-xs-8">
-                                    <input class="form-control" type="number" name="phone" value="@if(Auth::guard('users')->check()){{Auth::guard('users')->user()->phone}} @endif" placeholder="Nhập số điện thoại.">
+                                    <input class="form-control" type="text" name="phone" value="@if(Auth::guard('users')->check()){{Auth::guard('users')->user()->phone}} @endif" placeholder="Nhập số điện thoại.">
                                 </div>
                             </div>
                         </div>
