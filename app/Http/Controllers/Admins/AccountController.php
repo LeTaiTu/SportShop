@@ -185,6 +185,7 @@ class AccountController extends Controller
             $image = $old_image;
         }
         $account->image = $image;
+        $account->password = bcrypt($request->password);
         $account->save();
         return redirect('admin/account')->with('success', 'Cập Nhật Thành Công!');
     }

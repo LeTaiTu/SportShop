@@ -70,8 +70,13 @@ Route::get('/contact', function(){
     Route::get('/order', "\App\Http\Controllers\CartController@getOrder")->name('order.product');
 // xoa gio hang
     Route::get('/{id}/order', "\App\Http\Controllers\CartController@getDelItemCart")->name('order.delete');
-// thanh toan
+// thanh toan -> dat hang
     Route::get('/payment', "\App\Http\Controllers\CartController@payment")->name('payment');
+// trang nhap thong tin xac nhan order
+    Route::post('/payment',"\App\Http\Controllers\CartController@setOrder")->name('order.confirm');
+// dat hang thanh cong
+    Route::get('/order_success', "\App\Http\Controllers\CartController@successOrder")->name('order_success');
+
 // group admin
 Route::prefix('admin')->group(function() {
     // login
@@ -155,6 +160,9 @@ Route::prefix('admin')->group(function() {
     Route::get('/producer/{id}/delete',"\App\Http\Controllers\Admins\ProducerController@destroy")->name('producer.delete');
     Route::get('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@edit")->name('producer.edit');
     Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerCo  ntroller@update")->name('producer.update');
+
+    // trang quan ly order san pham
+    Route::post('/order',"\App\Http\Controllers\Admins\OrderController@index")->name('admin.order');
 });
 
 

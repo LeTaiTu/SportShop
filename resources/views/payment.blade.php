@@ -2,7 +2,7 @@
 @section('content')
 	<div id="cart_frame" class="container">
         <div class="row">
-            <form action="" method="POST">
+            <form action="{{route('order.confirm')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
             	@csrf
                 <div class="info_cart col-md-8">
                     <p class="cart_title" style="font-weight: bold;">Thông tin người mua hàng</p>
@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-xs-3">Địa Chỉ <span class="required">(*)</span></div>
                                 <div class="col-xs-8">
-                                    <input class="form-control" type="text" name="address_details" placeholder="Nhập địa chỉ chi tiết.">
+                                    <input class="form-control" type="text" name="address" placeholder="Nhập địa chỉ chi tiết.">
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <div class="col-xs-3">Lời nhắn: <span style="font-size: 12px; color: #797979;">(Không
                                         bắt buộc)</span></div>
                                 <div class="col-xs-8">
-                                    <input class="form-control" type="text" name="address_details" placeholder="Ví dụ: giao hàng ngoài giờ hành chính">
+                                    <input class="form-control" type="text" name="content" placeholder="Ví dụ: giao hàng ngoài giờ hành chính">
                                 </div>
                             </div>
                         </div>

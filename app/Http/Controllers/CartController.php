@@ -11,6 +11,8 @@ use Auth;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Slide;
+use App\Models\Order;
+use App\User;
 
 class CartController extends Controller
 {
@@ -96,9 +98,34 @@ class CartController extends Controller
     public function payment(Request $request) {
         return view('/payment');
     }
-    public function create()
+    
+    public function setOrder(Request $request) {
+
+        $rules = ['name' => 'required|max:191',
+                'phone' => 'required|max:191',
+                'address' => 'required|max:191',
+                'content' => 'required|max:191'
+                ];
+        
+        //@dd(session('cart'));
+
+        $orders = new Order;
+        $orders->fill($request->all());
+        if (Auth::guard('users')->check()) {
+            $orders->id_customer = Auth::guard('users')->user()->id;
+        }
+        else {
+            $orders->id_customer = 0;
+        }
+        $orders->amount = Session('cart')->totalPrice;
+        $orders->status = 0;
+        $orders->save();
+        return redirect('/order_success');
+    }
+
+    public function successOrder()
     {
-        //
+        return view('order_success');
     }
 
     /**
