@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Cart;
+use Session;
+use App\Models\ProductDetail;
 
 class OrderController extends Controller
 {
@@ -30,7 +34,15 @@ class OrderController extends Controller
     }
 
     public function detail_order() {
-        return view('admin.orders.detail');
+        $order_details = OrderDetail::query()->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.orders.detail', compact('order_details'));
+    }
+    
+    public function detail_search(Request $req)
+    {
+        $order_details = OrderDetail::where('order_id','like',"%".$req->txtsearch."%")
+        ->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.orders.detail', compact('order_details'));
     }
     /**
      * Show the form for creating a new resource.
@@ -61,7 +73,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order_details = OrderDetail::where('order_id','like',$id)->orderBy('created_at', 'desc')->paginate(10);
+       
+        return view('admin.orders.detail', compact('order_details'));
     }
 
     /**
@@ -98,9 +112,21 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $orders = Order::findOrFail($id);
-        $orders->delete();
+        $order_details = OrderDetail::findOrFail($id);
         // tra lai so luong san pham cho sql
-        return redirect('admin/orderadmin');
+        $id_detail = $order_details->product_detail_id;
+        $id_order = $order_details->order_id;
+        //@dd($id_order);
+        $product_details = ProductDetail::findOrFail($id_detail);
+        $product_details->quantity += $order_details->quantity;
+        $product_details->save();
+        // tra lai so tien san pham cho sql
+        $orders = Order::findOrFail($id_order);
+        $orders->amount -= ($order_details->quantity * $order_details->price);
+        $orders->save();
+        // huy san pham da dat
+        $order_details->delete();
+        return redirect('admin/orderdetail')->with('success', "Đã hủy thành công!");
     }
+
 }

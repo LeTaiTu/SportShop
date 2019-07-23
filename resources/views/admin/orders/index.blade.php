@@ -29,7 +29,7 @@
 	<div class="col-md-3">
         
         <a href="{{Route('admin_order')}}" title="" class="btn btn-danger" style="margin-bottom:20px; ">Xem Tất Cả</a>
-        <a href="{{Route('order.detail')}}" title="" class="btn btn-info" style="margin-bottom:20px;margin-left: 10px ">Chi tiết đơn hàng</a>
+        
     </div>
     <div class="col-md-9">
     	<form action="{{route('order.search')}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
@@ -63,21 +63,27 @@
 	    		<td style="text-align: center">{{$sl->phone}}</td>
 	    		<td style="text-align: center">{{$sl->address}}</td>
 	    		<td style="text-align: center">{{$sl->content}}</td>
-	    		<td style="text-align: center">{{$sl->amount}}</td>
+	    		<td style="text-align: center">{{number_format($sl->amount)}}</td>
 	    		<form action="{{route('order.update', $sl->id)}}" method="post" enctype="multipart/form-data" accept-charset="utf8">
 	    			@csrf
 	    		<td style="text-align: center">
+	    			@if($sl->amount != 0)
 	    			<select name="status" class="form-control">
 		            <option {{ $sl->status == 0 ? "selected" : '' }} value="0">Đang Chuyển</option>
 		            <option {{ $sl->status == 1 ? "selected" : '' }} value="1">Đã Chuyển</option>
+		            @else
+		            Đã Hủy
+		            @endif
 		        	</select>
 	    		</td>
 		        
 	    		<td style="text-align: center">{{$sl->created_at}}</td>
-	    		<td style="text-align: center"><button type="submit" class="btn btn-warning">Cập Nhật</button>  </td>
+	    		<td style="text-align: center"><button {{$sl->amount == 0 ? "disabled" : ""}}  type="submit" class="btn btn-warning">Cập Nhật</button>  </td>
 	    		</form>
-	    		
-	    		<td style="text-align: center"><a class="deleteItem btn btn-danger" href="{{route('order.delete',$sl->id)}}">Hủy</a></td>
+	    		<td style="text-align: center">
+	    			<a {{$sl->amount == 0 ? "disabled" : ""}} href="{{Route('show_order', $sl->id)}}" title="" class="btn btn-info" style="margin-bottom:20px;">Chi tiết</a>
+	    		</td>
+	  			
 	    	</tr>
 		    @empty
 		    	<tr>

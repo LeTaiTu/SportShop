@@ -79,11 +79,10 @@
                     <ul>
                         <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
                         <li><a href="{{route('sale')}}"> KHUYẾN MÃI</a></li>
-                        <li><a href="{{route('quanao')}}"> QUẦN ÁO , GIẦY</a></li>
-                        <li><a href="{{route('phuchoi')}}"> THỰC PHẨM PHỤC HỒI</a></li>
-                        <li><a href="{{route('bong')}}"> BÓNG</a></li>
-                        <li><a href="{{route('chucnang')}}"> THỰC PHẨM CHỨC NĂNG</a></li>
-                        <li><a href="{{route('kinh')}}"> KÍNH BƠI</a></li>
+                        <li><a href="{{route('quanao')}}"> QUẦN ÁO</a></li>
+                        <li><a href="{{route('giay')}}"> GIẦY THỂ THAO</a></li>
+                        <li><a href="{{route('thucpham')}}"> THỰC PHẨM BỔ SUNG</a></li>
+                        <li><a href="{{route('phukien')}}"> PHỤ KIỆN THỂ THAO</a></li>
                         <li><a href="{{route('contact')}}">LIÊN HỆ</a></li>
                     </ul>
                 </div>

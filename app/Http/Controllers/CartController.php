@@ -13,6 +13,7 @@ use App\Models\ProductDetail;
 use App\Models\Slide;
 use App\Models\Order;
 use App\User;
+use App\Models\OrderDetail;
 
 class CartController extends Controller
 {
@@ -120,6 +121,20 @@ class CartController extends Controller
         $orders->amount = Session('cart')->totalPrice;
         $orders->status = 0;
         $orders->save();
+
+        // order detail
+        //@dd(session('cart'));
+        foreach (session('cart')->items as $key => $item) {
+            
+            $order_details = new OrderDetail;
+            $order_details->order_id = $orders->id;
+            $order_details->product_detail_id = $item['item']['id'];
+            $order_details->size = $item['size'];
+            $order_details->quantity = $item['qty'];
+            $order_details->price = $item['price'];
+            $order_details->save();
+        }
+        session()->forget('cart');
         return redirect('/order_success');
     }
 

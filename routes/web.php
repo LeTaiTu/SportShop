@@ -41,22 +41,19 @@ Route::get('/sale', function () {
 Route::get('/quanao', function () {
     return view('quanao');
 })->name('quanao');
+// menu trang giay the thao
+Route::get('/giay', function () {
+    return view('giay');
+})->name('giay');
 // menu trang phuchoi
-Route::get('/phuchoi', function () {
-    return view('phuchoi');
-})->name('phuchoi');
-// menu trang bong
-Route::get('/bong', function () {
-    return view('bong');
-})->name('bong');
-// menu trang chuc nang
-Route::get('/chucnang', function () {
-    return view('chucnang');
-})->name('chucnang');
-// menu trang kinh
-Route::get('/kinh', function(){
-	return view('kinh');
-})->name('kinh');
+Route::get('/thucpham', function () {
+    return view('thucpham');
+})->name('thucpham');
+
+// menu trang phu kien
+Route::get('/phukien', function(){
+	return view('phukien');
+})->name('phukien');
 // menu trang contact
 Route::get('/contact', function(){
 	return view('contact');
@@ -159,17 +156,20 @@ Route::prefix('admin')->group(function() {
     Route::post('/producer/create',"\App\Http\Controllers\Admins\ProducerController@store")->name('producer.store');
     Route::get('/producer/{id}/delete',"\App\Http\Controllers\Admins\ProducerController@destroy")->name('producer.delete');
     Route::get('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@edit")->name('producer.edit');
-    Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerCo  ntroller@update")->name('producer.update');
+    Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@update")->name('producer.update');
 
     // trang quan ly order san pham
     Route::get('/orderadmin',"\App\Http\Controllers\Admins\OrderController@index")->name('admin_order');
     Route::post('/orderadmin/search',"\App\Http\Controllers\Admins\OrderController@search")->name('order.search');
 
     Route::post('/orderadmin/{id}',"\App\Http\Controllers\Admins\OrderController@update")->name('order.update');
-    
-    Route::get('/orderadmin/{id}/delete',"\App\Http\Controllers\Admins\OrderController@destroy")->name('order.delete');
+
+    Route::get('/orderadmin/{id}/show',"\App\Http\Controllers\Admins\OrderController@show")->name('show_order');
     // trang quan ly order chi tiet san pham
     Route::get('/orderdetail',"\App\Http\Controllers\Admins\OrderController@detail_order")->name('order.detail');
+    Route::post('/orderdetail/search',"\App\Http\Controllers\Admins\OrderController@detail_search")->name('order_detail.search');
+    
+    Route::get('/orderdetail/{id}/delete',"\App\Http\Controllers\Admins\OrderController@destroy")->name('order_detail.delete');
 });
 
 
