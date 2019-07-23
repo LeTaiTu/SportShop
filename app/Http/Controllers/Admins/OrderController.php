@@ -20,6 +20,18 @@ class OrderController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
+    public function search(Request $req)
+    {
+        $orders = Order::where('name','like',"%".$req->txtsearch."%")
+        ->orWhere('phone','like',"%".$req->txtsearch."%")
+        ->orWhere('address','like',"%".$req->txtsearch."%")
+        ->orderBy('created_at', 'desc')->paginate(3);
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function detail_order() {
+        return view('admin.orders.detail');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +40,6 @@ class OrderController extends Controller
     public function create()
     {
         
-
     }
 
     /**
@@ -73,7 +84,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $orders = Order::findOrFail($id);
+        $orders->status = $request->status;
+        $orders->save();
+        return redirect('admin/orderadmin');
     }
 
     /**
@@ -84,6 +98,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $orders = Order::findOrFail($id);
+        $orders->delete();
+        // tra lai so luong san pham cho sql
+        return redirect('admin/orderadmin');
     }
 }

@@ -162,7 +162,14 @@ Route::prefix('admin')->group(function() {
     Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerCo  ntroller@update")->name('producer.update');
 
     // trang quan ly order san pham
-    Route::post('/order',"\App\Http\Controllers\Admins\OrderController@index")->name('admin.order');
+    Route::get('/orderadmin',"\App\Http\Controllers\Admins\OrderController@index")->name('admin_order');
+    Route::post('/orderadmin/search',"\App\Http\Controllers\Admins\OrderController@search")->name('order.search');
+
+    Route::post('/orderadmin/{id}',"\App\Http\Controllers\Admins\OrderController@update")->name('order.update');
+    
+    Route::get('/orderadmin/{id}/delete',"\App\Http\Controllers\Admins\OrderController@destroy")->name('order.delete');
+    // trang quan ly order chi tiet san pham
+    Route::get('/orderdetail',"\App\Http\Controllers\Admins\OrderController@detail_order")->name('order.detail');
 });
 
 

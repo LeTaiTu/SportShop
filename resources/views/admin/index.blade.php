@@ -116,10 +116,10 @@
                             <a href="{{route('admin.producer')}}"><i class="fa fa-book"></i>Nhà sản xuất</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-th"></i>Đơn hàng</a>
+                            <a href="{{route('admin_order')}}"><i class="fa fa-th"></i>Đơn hàng</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-th"></i>Chi tiết đơn hàng</a>
+                            <a href="{{route('order.detail')}}"><i class="fa fa-th"></i>Chi tiết đơn hàng</a>
                         </li>
                         <li>
                             <a href="{{route('admin.member')}}"><i class="fa fa-th"></i>Thành viên</a>
