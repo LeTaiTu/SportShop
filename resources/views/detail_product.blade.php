@@ -87,7 +87,7 @@
 			
 			<h5 class="sizes">
 				<ul>
-					<span>Phân loại hàng: Size </span>
+					<span>Phân loại hàng theo loại : </span>
 					@forelse($product_details as $pdetail)
 						<input type="hidden" value="{{$pdetail->size}}" name="size_type">
 						<li ><a style="text-decoration: none" class="size {{$pdetail->size == $get_size ? 'active_size' : ''}}" href="{{route('detail.product',[$product->id, $pdetail->size])}}" >{{$pdetail->size}}</a></li>
@@ -124,12 +124,9 @@
 
 	<div id="description_product" class="container">
 		<p class="title_description_product">Mô tả sản phẩm</p>
-		<div class="content_description_product">{{$product->content}}</div>
+		<div style="font-size: 17px" class="content_description_product">{{$product->content}}</div>
 		<ul>
-			<span><img class="img_tag" src="{{asset('asset_admin/images/icon-tag.png')}}" alt="">Tag:</span>
-			<li class="tag active_tag"></li>
-			<li class="tag"></li>
-			<li class="tag"></li>
+			
 		</ul>
 	</div>
 

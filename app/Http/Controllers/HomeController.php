@@ -27,17 +27,18 @@ class HomeController extends Controller
         $id_foods = KindSport::where('key','like','thucpham')->first();
         $id_accessories = KindSport::where('key','like','phukien')->first();
         // lay du lieu tu id kindsport
-        $pro_clothers = Product::where('kind_sport_id',$id_clothers->id)->get();
-        $pro_shoes = Product::where('kind_sport_id',$id_shoes->id)->get();
-        $pro_foods = Product::where('kind_sport_id',$id_foods->id)->get();
-        $pro_accessories = Product::where('kind_sport_id',$id_accessories->id)->get();
-        @dd($pro_clothers->id);
+        $pro_clothers = Product::where('kind_sport_id',$id_clothers->id)->paginate(5);
+        $pro_shoes = Product::where('kind_sport_id',$id_shoes->id)->paginate(5);
+        $pro_foods = Product::where('kind_sport_id',$id_foods->id)->paginate(5);
+        $pro_accessories = Product::where('kind_sport_id',$id_accessories->id)->paginate(5);
+        //@dd($pro_clothers);
+        //@dd($pro_foods);
         // $product_details = ProductDetail::query()->paginate(5);
-        $detail_clother = ProductDetail::where('product_id',$pro_clothers->id)->paginate(15);
+        $detail_clother = ProductDetail::where('kind_sport_id',$id_clothers->id)->get();
         //@dd($detail_clother);
-        $detail_shoes = ProductDetail::where('product_id',$pro_shoes->id)->paginate(15);
-        $detail_food = ProductDetail::where('product_id',$pro_foods->id)->paginate(15);
-        $detail_accessories = ProductDetail::where('product_id',$pro_accessories->id)->paginate(5);
+        $detail_shoes = ProductDetail::where('kind_sport_id',$id_shoes->id)->get();
+        $detail_food = ProductDetail::where('kind_sport_id',$id_foods->id)->get();
+        $detail_accessories = ProductDetail::where('kind_sport_id',$id_accessories->id)->get();
         return view('home.home',compact('pro_clothers','pro_shoes','pro_foods','pro_accessories','detail_clother','detail_shoes','detail_food','detail_accessories'));
     }
 

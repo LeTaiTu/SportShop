@@ -134,7 +134,7 @@
                 </div>
             </div>
         </div>
-
+{{-- pro_clothers detail_clother --}}
         <div id="product_frame" class="row">
             <div class="category col-md-12">
                 <ul>
@@ -188,7 +188,9 @@
                                     </a>
                                     @endif
                                 </div>
+                                @break
                             @endif
+
                         @empty
                             <p>Không có dữ liệu</p>
                         @endforelse
@@ -211,10 +213,8 @@
 
                 <div id="giay" class="products tab-pane fade in active col-md-12 col-xs-12">
                     @forelse($pro_shoes as $product)
-                    {{-- @dd($pro_shoes) --}}
                         @forelse($detail_shoes as $detail)
                             @if($product->id == $detail->product_id)
-
                                 <div class="card col-md-2 col-sm-4 col-xs-6">
                                     @if($detail->original_price - $detail->sell_price > 0)
                                     <a href="{{route('detail.product', [$product->id, $detail->size])}}" style="text-decoration: none" target="blank">
@@ -254,14 +254,14 @@
                                     </a>
                                     @endif
                                 </div>
+                                @break
                             @endif
+
                         @empty
                             <p>Không có dữ liệu</p>
                         @endforelse
                     @empty 
                     @endforelse
-                    
-                    
                 </div>
             </div>
         </div>
@@ -269,14 +269,15 @@
         <div id="product_frame" class="row">
             <div class="category col-md-12">
                 <ul>
-                    <li class="active"><a data-toggle="pill" href="#quanao">Thực Phẩm Bổ Sung</a></li>
+                    <li class="active"><a data-toggle="pill" href="{{route('thucpham')}}">Thực Phẩm Bổ Sung</a></li>
 
                     <li class="show_all"><a href="{{route('thucpham')}}">Xem tất cả</a></li>
                 </ul>
             </div>
             <div class="tab-content">
 
-                <div id="giay" class="products tab-pane fade in active col-md-12 col-xs-12">
+                <div id="thucpham" class="products tab-pane fade in active col-md-12 col-xs-12">
+
                     @forelse($pro_foods as $product)
                         @forelse($detail_food as $detail)
                             @if($product->id == $detail->product_id)
@@ -303,7 +304,7 @@
                                     <a href="{{route('detail.product', [$product->id, $detail->size])}}" style="text-decoration: none" target="blank">
                                     <div class="card_img">
                                         <img src="{{asset('storage/product/'.$product->image)}}">
-                                        <div class="new_products">
+                                        <div class="new_products" >
                                             <img src="{{asset('asset_admin/images/icon-new-product.png')}}" alt="">
                                             <p>SẢN PHẨM MỚI</p>
                                         </div>
@@ -319,7 +320,9 @@
                                     </a>
                                     @endif
                                 </div>
+                                @break
                             @endif
+
                         @empty
                             <p>Không có dữ liệu</p>
                         @endforelse
@@ -333,7 +336,7 @@
         <div id="product_frame" class="row">
             <div class="category col-md-12">
                 <ul>
-                    <li class="active"><a data-toggle="pill" href="#quanao">Phụ Kiện Thể Thao</a></li>
+                    <li class="active"><a data-toggle="pill" href="{{route('phukien')}}">Phụ Kiện Thể Thao</a></li>
 
                     <li class="show_all"><a href="{{route('phukien')}}">Xem tất cả</a></li>
                 </ul>

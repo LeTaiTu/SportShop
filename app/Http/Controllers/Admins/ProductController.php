@@ -127,10 +127,11 @@ public function createAcces(){
         $product->image = $image;
         $product->save();
         // $product_id = $product->id;
-        
+        //@dd($product->kind_sport_id);
         foreach($sizes as $key => $data) {
             $prDetails = new ProductDetail;
             $prDetails->product_id = $product->id;
+            $prDetails->kind_sport_id = $product->kind_sport_id;
             $prDetails->size = $data;
             $prDetails->quantity = $options[$data]['txtQuantity'];
             $prDetails->original_price = $options[$data]['txtPriceOri'];
@@ -165,6 +166,7 @@ public function createAcces(){
     for ($i=0; $i < count($sizes); $i++) { 
         $prDetails = new ProductDetail;
         $prDetails->product_id = $product->id;
+        $prDetails->kind_sport_id = $product->kind_sport_id;
         $prDetails->size = $sizes[$i];
         $prDetails->quantity = $quantities[$i];
         $prDetails->original_price = $request->input('original_price');
@@ -201,6 +203,7 @@ public function storefoods(Request $request){
     for ($i=0; $i < count($sizes); $i++) { 
         $prDetails = new ProductDetail;
         $prDetails->product_id = $product->id;
+        $prDetails->kind_sport_id = $product->kind_sport_id;
         $prDetails->size = $sizes[$i];
         $prDetails->quantity = $quantities[$i];
         $prDetails->original_price = $price1[$i];
@@ -233,6 +236,7 @@ public function storeacces(Request $request){
     $prDetail = new ProductDetail;
     $prDetail->fill($request->all());
     $prDetail->product_id = $product->id;
+    $prDetails->kind_sport_id = $product->kind_sport_id;
     $prDetail->save();
     session()->forget('kind');
     return redirect('admin/product')->with('success','Thêm mới thành công');

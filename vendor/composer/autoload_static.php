@@ -415,6 +415,7 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
         'App\\Models\\KindSport' => __DIR__ . '/../..' . '/app/Models/KindSport.php',
         'App\\Models\\Kind_sport' => __DIR__ . '/../..' . '/app/Models/Kind_sport.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OrderDetail' => __DIR__ . '/../..' . '/app/Models/OrderDetail.php',
         'App\\Models\\Producer' => __DIR__ . '/../..' . '/app/Models/Producer.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductDetail' => __DIR__ . '/../..' . '/app/Models/ProductDetail.php',

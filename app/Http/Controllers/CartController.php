@@ -39,8 +39,8 @@ class CartController extends Controller
         $get_size = $size;
          // san pham tuong tu lay nhung san pham cung loai kind sport id
         $pro_similar = Product::where('kind_sport_id',$product->kind_sport_id)->get();
-        
-        $details_similar = ProductDetail::query()->paginate(5);
+        //@dd($pro_similar);
+        $details_similar = ProductDetail::get();
         //@dd($details_similar);
         $total_quantity = 0;
         foreach($product_details as $pdetail) {
