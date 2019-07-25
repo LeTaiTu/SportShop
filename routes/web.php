@@ -34,26 +34,15 @@ Route::get('/change_info_user/{id}', "\App\Http\Controllers\HomeController@edit"
 Route::post('/change_info_user/{id}', "\App\Http\Controllers\HomeController@update")->name('edit_user');
 
 // menu trang khuyen mai
-Route::get('/sale', function () {
-    return view('sale');
-})->name('sale');
+Route::get('/sale', "\App\Http\Controllers\MenuController@sale")->name('sale');
 // menu trang quan ao
-Route::get('/quanao', function () {
-    return view('quanao');
-})->name('quanao');
+Route::get('/quanao', "\App\Http\Controllers\MenuController@clothes")->name('quanao');
 // menu trang giay the thao
-Route::get('/giay', function () {
-    return view('giay');
-})->name('giay');
+Route::get('/giay', "\App\Http\Controllers\MenuController@shoes")->name('giay');
 // menu trang phuchoi
-Route::get('/thucpham', function () {
-    return view('thucpham');
-})->name('thucpham');
-
+Route::get('/thucpham', "\App\Http\Controllers\MenuController@foods")->name('thucpham');
 // menu trang phu kien
-Route::get('/phukien', function(){
-	return view('phukien');
-})->name('phukien');
+Route::get('/phukien', "\App\Http\Controllers\MenuController@accessories")->name('phukien');
 // menu trang contact
 Route::get('/contact', function(){
 	return view('contact');
@@ -77,7 +66,7 @@ Route::get('/contact', function(){
 // group admin
 Route::prefix('admin')->group(function() {
     // login
-	Route::get('/', "\App\Http\Controllers\Admins\LoginController@showLoginForm");
+	Route::get('/', "\App\Http\Controllers\Admins\LoginController@showLoginForm")->name('admin.login');
 	Route::post('/', "\App\Http\Controllers\Admins\LoginController@store")->name('admin');
     // logout
     Route::get('/logout', "\App\Http\Controllers\Admins\LoginController@logout")->name('admin.logout');

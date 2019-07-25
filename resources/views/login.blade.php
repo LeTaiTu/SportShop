@@ -50,7 +50,9 @@
                         <p style="margin-top: 10px;">
                             <a href="{{route('register')}}">Đăng ký</a>
                             <a href="{{route('contact')}}" style="position: absolute; right: 15px;">Quên mật khẩu</a>
+
                         </p>
+                        <a  href="{{route('admin.login')}}" target="_blank">Đăng Nhập Quản Trị</a>
                     </div>
                     
                 </div>

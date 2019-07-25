@@ -41,6 +41,10 @@
     <input type="text" name="quantity" class="form-control">
 </div>
 <div class="form-group">
+    <label>Kích thước</label>
+    <input type="text" name="size" class="form-control">
+</div>
+<div class="form-group">
     <label>Giá gốc</label>
     <input type="text" name="original_price" class="form-control">
 </div>

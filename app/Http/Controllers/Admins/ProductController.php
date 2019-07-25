@@ -223,6 +223,7 @@ public function storeacces(Request $request){
         'quantity' => 'required|numeric|min:0',
         'original_price' => 'required|numeric|min:0',
         'sell_price' => 'required|numeric|min:0',
+        'size' => 'required|max:191',
     ]; 
     $request->validate($rules);
     $product = new Product;
@@ -232,11 +233,14 @@ public function storeacces(Request $request){
     $file->storeAs('public/product',$image);
     $product->image = $image;
     $product->save();
-
+    $get_product = Product::where('image','like',$image)->first();
+    // product detail
     $prDetail = new ProductDetail;
     $prDetail->fill($request->all());
-    $prDetail->product_id = $product->id;
-    $prDetails->kind_sport_id = $product->kind_sport_id;
+    //@dd($product);
+    $prDetail->product_id = $get_product->id;
+    $prDetail->size = $request->size;
+
     $prDetail->save();
     session()->forget('kind');
     return redirect('admin/product')->with('success','Thêm mới thành công');
