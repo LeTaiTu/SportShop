@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Hash;
 use Auth;
+use App\Models\Product;
+use App\Models\ProductDetail;
+use App\Models\Slide;
+use App\Models\KindSport;
 
 class HomeController extends Controller
 {
@@ -17,7 +21,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        // id
+        $id_clothers = KindSport::where('key','like','quanao')->first();
+        $id_shoes = KindSport::where('key','like','giay')->first();
+        $id_foods = KindSport::where('key','like','thucpham')->first();
+        $id_accessories = KindSport::where('key','like','phukien')->first();
+        // lay du lieu tu id kindsport
+        $product_sale = Product::query()->paginate(7);
+        $pro_clothers = Product::where('kind_sport_id',$id_clothers->id)->paginate(5);
+        $pro_shoes = Product::where('kind_sport_id',$id_shoes->id)->paginate(5);
+        $pro_foods = Product::where('kind_sport_id',$id_foods->id)->paginate(5);
+        $pro_accessories = Product::where('kind_sport_id',$id_accessories->id)->paginate(5);
+        //@dd($pro_clothers);
+        //@dd($pro_foods);
+        // $product_details = ProductDetail::query()->paginate(5);
+        $detail_sale = ProductDetail::get();
+        $detail_clother = ProductDetail::where('kind_sport_id',$id_clothers->id)->get();
+        //@dd($detail_clother);
+        $detail_shoes = ProductDetail::where('kind_sport_id',$id_shoes->id)->get();
+        $detail_food = ProductDetail::where('kind_sport_id',$id_foods->id)->get();
+        $detail_accessories = ProductDetail::where('kind_sport_id',$id_accessories->id)->get();
+        return view('home.home',compact('product_sale','detail_sale','pro_clothers','pro_shoes','pro_foods','pro_accessories','detail_clother','detail_shoes','detail_food','detail_accessories'));
     }
 
     

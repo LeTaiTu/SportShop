@@ -59,7 +59,7 @@ class ProductController extends Controller
            }
            elseif ($kind== 'phukien') {
                session(['kind'=>$_id]);
-               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createClothes', ['kind' => $_id]);
+               return redirect()->action('\App\Http\Controllers\Admins\ProductController@createAcces', ['kind' => $_id]);
            }
            else{
             return "Found";
@@ -87,6 +87,13 @@ public function createShoes(){
 public function createFoods(){
     $producers = Producer::get();
     return view('admin.product.createFoods',[
+        'producers' => $producers,
+    ]);
+
+}
+public function createAcces(){
+    $producers = Producer::get();
+    return view('admin.product.createAcces',[
         'producers' => $producers,
     ]);
 
@@ -120,10 +127,11 @@ public function createFoods(){
         $product->image = $image;
         $product->save();
         // $product_id = $product->id;
-        
+        //@dd($product->kind_sport_id);
         foreach($sizes as $key => $data) {
             $prDetails = new ProductDetail;
             $prDetails->product_id = $product->id;
+            $prDetails->kind_sport_id = $product->kind_sport_id;
             $prDetails->size = $data;
             $prDetails->quantity = $options[$data]['txtQuantity'];
             $prDetails->original_price = $options[$data]['txtPriceOri'];
@@ -154,6 +162,7 @@ public function createFoods(){
     $product->image = $image;
     $product->save();
         // $product_id = $product->id;
+<<<<<<< HEAD
     if(isset($size) && count($size)>0) {
         for ($i=0; $i < count($sizes); $i++) { 
             $prDetails = new ProductDetail;
@@ -164,6 +173,18 @@ public function createFoods(){
             $prDetails->sell_price = $request->input('sell_price');
             $prDetails->save();
         }
+=======
+
+    for ($i=0; $i < count($sizes); $i++) { 
+        $prDetails = new ProductDetail;
+        $prDetails->product_id = $product->id;
+        $prDetails->kind_sport_id = $product->kind_sport_id;
+        $prDetails->size = $sizes[$i];
+        $prDetails->quantity = $quantities[$i];
+        $prDetails->original_price = $request->input('original_price');
+        $prDetails->sell_price = $request->input('sell_price');
+        $prDetails->save();
+>>>>>>> 9e37be395d16fbef6ff44fa6fca1f19f5b0bf0f4
     }
     
     session()->forget('kind');
@@ -196,6 +217,7 @@ public function storefoods(Request $request){
     for ($i=0; $i < count($sizes); $i++) { 
         $prDetails = new ProductDetail;
         $prDetails->product_id = $product->id;
+        $prDetails->kind_sport_id = $product->kind_sport_id;
         $prDetails->size = $sizes[$i];
         $prDetails->quantity = $quantities[$i];
         $prDetails->original_price = $price1[$i];
@@ -204,6 +226,38 @@ public function storefoods(Request $request){
     }
     session()->forget('kind');
     return redirect('admin/product')->with('success', "Thêm mới thành công");
+}
+
+public function storeacces(Request $request){
+    $rules = [
+        'name_pro' => 'required|string|max:191',
+        'kind_sport_id' => 'required|max:191',
+        'producer_id' => 'required|max:191',
+        'content' => 'required|max:191',
+        'quantity' => 'required|numeric|min:0',
+        'original_price' => 'required|numeric|min:0',
+        'sell_price' => 'required|numeric|min:0',
+        'size' => 'required|max:191',
+    ]; 
+    $request->validate($rules);
+    $product = new Product;
+    $product->fill($request->all());
+    $file = $request->file('image');
+    $image = time() . "-" . $file->getClientOriginalName();
+    $file->storeAs('public/product',$image);
+    $product->image = $image;
+    $product->save();
+    $get_product = Product::where('image','like',$image)->first();
+    // product detail
+    $prDetail = new ProductDetail;
+    $prDetail->fill($request->all());
+    //@dd($product);
+    $prDetail->product_id = $get_product->id;
+    $prDetail->size = $request->size;
+
+    $prDetail->save();
+    session()->forget('kind');
+    return redirect('admin/product')->with('success','Thêm mới thành công');
 }
 
     /**
@@ -225,18 +279,28 @@ public function storefoods(Request $request){
      */
     public function edit($id)
     {
-        $products = Product::findOrFail($id);
+        session(['id'=>$id]);
+        $idkind = Product::findOrFail($id);
+        $kind = KindSport::where("id",$idkind->kind_sport_id)->first();
+        $_id = $kind->key;
+        if ($kind->key=='quanao') {
+            session(['_id'=>$_id]);
+            return redirect()->action('\App\Http\Controllers\Admins\ProductController@editAcces', ['id' => $id]);
+        }
+    }
+
+    public function editAcces(){
+        $products = Product::findOrFail(session('id'));
         $producers = Producer::where("active", 1)->get();
         $kind_sports = KindSport::get(); 
-        $prDetails = ProductDetail::where("product_id",$id)->get();
-        return view('admin.product.edit', [
+        $prDetails = ProductDetail::where("product_id",session('id'))->get();
+        return view('admin.product.editAcces', [
             'products'=>$products,
             'producers'=>$producers,
             'kind_sports'=>$kind_sports,
             'prDetails'=>$prDetails,
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -244,6 +308,12 @@ public function storefoods(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function updateacces(Request $request, $id)
+    {
+        
+    }
+
     public function update(Request $request, $id)
     {
         //

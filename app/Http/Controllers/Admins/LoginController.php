@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Session;
 use Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-// use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -22,39 +20,17 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/admin/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
 
     public function showLoginForm(Request $request) {
-        if (Auth::check()) {
+        if (Auth::guard('admins')->check()) {
             return view('admin.home');
         }
         return view('admin.login');
     }
 
-    public function username() {
-        return 'username';
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('admin');
-    }
-
     public function store(Request $request)
     {
+<<<<<<< HEAD
         //dd($request->all());
         $username = $request->username;
         $password = $request->password;
@@ -77,12 +53,26 @@ class LoginController extends Controller
                 return view('admin.home', compact('id_admin','name_admin', 'image_admin'));
             }
             //dd(34);
+=======
+        $arr = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
+        
+        if (Auth::guard('admins')->attempt($arr)) {
+            
+            return redirect('/admin/home');
+>>>>>>> 9e37be395d16fbef6ff44fa6fca1f19f5b0bf0f4
         }
-        return view('admin.login');
+        else {
+            return redirect('/admin')->with('error', "Sai username hoặc password!");
+        }
+        
     }
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
+    public function logout() {
+        Auth::guard('admins')->logout();
+        return redirect('/admin');
     }
+    
 
 }

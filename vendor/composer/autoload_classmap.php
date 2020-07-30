@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminSeeder' => $baseDir . '/database/seeds/AdminSeeder.php',
+    'App\\Cart' => $baseDir . '/app/Cart.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admins\\AccountController' => $baseDir . '/app/Http/Controllers/Admins/AccountController.php',
@@ -13,6 +15,10 @@ return array(
     'App\\Http\\Controllers\\Admins\\KindsportController' => $baseDir . '/app/Http/Controllers/Admins/KindsportController.php',
     'App\\Http\\Controllers\\Admins\\LoginController' => $baseDir . '/app/Http/Controllers/Admins/LoginController.php',
     'App\\Http\\Controllers\\Admins\\MemberController' => $baseDir . '/app/Http/Controllers/Admins/MemberController.php',
+<<<<<<< HEAD
+=======
+    'App\\Http\\Controllers\\Admins\\OrderController' => $baseDir . '/app/Http/Controllers/Admins/OrderController.php',
+>>>>>>> 9e37be395d16fbef6ff44fa6fca1f19f5b0bf0f4
     'App\\Http\\Controllers\\Admins\\ProducerController' => $baseDir . '/app/Http/Controllers/Admins/ProducerController.php',
     'App\\Http\\Controllers\\Admins\\ProductController' => $baseDir . '/app/Http/Controllers/Admins/ProductController.php',
     'App\\Http\\Controllers\\Admins\\SlideController' => $baseDir . '/app/Http/Controllers/Admins/SlideController.php',
@@ -21,6 +27,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
+    'App\\Http\\Controllers\\CartController' => $baseDir . '/app/Http/Controllers/CartController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
@@ -35,6 +42,8 @@ return array(
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\KindSport' => $baseDir . '/app/Models/KindSport.php',
     'App\\Models\\Kind_sport' => $baseDir . '/app/Models/Kind_sport.php',
+    'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
+    'App\\Models\\OrderDetail' => $baseDir . '/app/Models/OrderDetail.php',
     'App\\Models\\Producer' => $baseDir . '/app/Models/Producer.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\ProductDetail' => $baseDir . '/app/Models/ProductDetail.php',
@@ -1612,6 +1621,7 @@ return array(
     'League\\Flysystem\\Util\\ContentListingFormatter' => $vendorDir . '/league/flysystem/src/Util/ContentListingFormatter.php',
     'League\\Flysystem\\Util\\MimeType' => $vendorDir . '/league/flysystem/src/Util/MimeType.php',
     'League\\Flysystem\\Util\\StreamHasher' => $vendorDir . '/league/flysystem/src/Util/StreamHasher.php',
+    'LoginSeeder' => $baseDir . '/database/seeds/LoginSeeder.php',
     'Mockery' => $vendorDir . '/mockery/mockery/library/Mockery.php',
     'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
     'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',

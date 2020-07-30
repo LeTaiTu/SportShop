@@ -84,7 +84,7 @@ class AccountController extends Controller
        
         $account->fill($request->all());
         $account->image = $image;
-        $account->password = Hash::make($request->password);
+        $account->password = bcrypt($request->password);
         $account->save();
         return redirect('admin/account')->with('success', "Tạo Mới Thành Công");
     }
@@ -134,6 +134,15 @@ class AccountController extends Controller
         $account = Admin::findOrFail($id);
         $oldpassword = $request->oldpassword;
         $newpassword = $request->newpassword;
+        $arr = [
+            
+            'password' => $request->oldpassword,
+        ];
+        if (Auth::guard('admins')->attempt($arr)) {
+            $account->password = bcrypt($newpassword);
+            $account->save();
+            return redirect('admin/account')->with('success', 'Cập Nhật Thành Công!');
+        }
         if ($account->password == $oldpassword) {
             $account->password = $newpassword;
             $account->save();
@@ -176,6 +185,7 @@ class AccountController extends Controller
             $image = $old_image;
         }
         $account->image = $image;
+        $account->password = bcrypt($request->password);
         $account->save();
         return redirect('admin/account')->with('success', 'Cập Nhật Thành Công!');
     }

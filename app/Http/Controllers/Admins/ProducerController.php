@@ -66,7 +66,7 @@ class ProducerController extends Controller
                     'active' => 'numeric',
                     ];
         $request->validate($rules);
-        $producers = new Producer;
+        $producers = Producer::findOrFail($id);
         $file = $request->file('image');
         $image = time()."-".$file->getClientOriginalName();
         $file->storeAs('/public/producer', $image);

@@ -44,6 +44,8 @@
                 <th style="text-align: center" >ID</th>
 				<th style="text-align: center" >Tên Slide Ảnh</th>
 				<th style="text-align: center" >Loại Sản Phẩm</th>
+				<th style="text-align: center" >ID Sản Phẩm</th>
+				{{-- <th style="text-align: center" >Hiển Thị Đầu</th> --}}
 				<th style="text-align: center" >Hình Ảnh</th>
 				<th style="text-align: center" >Ngày Tạo</th>
 				<th style="text-align: center" >Ngày Sửa</th>
@@ -58,6 +60,8 @@
 	    		<td style="text-align: center">{{$sl->id}}</td>
 	    		<td style="text-align: center">{{$sl->name_slide}}</td>
 	    		<td style="text-align: center">{{$sl->id_kind}}</td>
+	    		<td style="text-align: center">{{$sl->id_details}}</td>
+	    		{{-- <td style="text-align: center">{{$sl->first_pic}}</td> --}}
 	    		<td style="text-align: center"><img src="{{asset('/storage/slide/'.$sl->image)}} " width="80"></td>
 	    		<td style="text-align: center">{{$sl->created_at}}</td>
 	    		<td style="text-align: center">{{$sl->updated_at}}</td>

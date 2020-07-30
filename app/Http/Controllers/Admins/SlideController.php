@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use App\Models\Kind_sport;
+use App\Models\Product;
 
 class SlideController extends Controller
 {
@@ -16,7 +17,7 @@ class SlideController extends Controller
      */
     public function index()
     {
-        $slide = Slide::query()->orderBy('created_at', 'desc')->paginate(3);
+        $slide = Slide::query()->orderBy('created_at', 'desc')->paginate(4);
         return view('admin.slides.index', compact('slide'));
     }
 
@@ -24,7 +25,7 @@ class SlideController extends Controller
     {
         $slide = Slide::where('name_slide','like', "%".$req->txtsearch."%")
         ->orWhere('id_kind','like',"%".$req->txtsearch."%")
-        ->orderBy('created_at', 'desc')->paginate(3);
+        ->orderBy('created_at', 'desc')->paginate(4);
         return view('admin.slides.index', compact('slide'));
     }
     /**
@@ -35,7 +36,8 @@ class SlideController extends Controller
     public function create()
     {
         $kindsport = Kind_sport::get();
-        return view('admin.slides.create',compact('kindsport'));
+        $products = Product::get();
+        return view('admin.slides.create',compact('kindsport', 'products'));
     }
 
     /**
@@ -90,7 +92,8 @@ class SlideController extends Controller
     {
         $slide = Slide::findOrFail($id);
         $kindsport = Kind_sport::get();
-        return view('admin.slides.edit', compact('slide','kindsport'));
+        $products = Product::get();
+        return view('admin.slides.edit', compact('slide','kindsport','products'));
     }
 
     /**

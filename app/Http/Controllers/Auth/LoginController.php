@@ -48,7 +48,7 @@ class LoginController extends Controller
         $credentials = array('email' => $req->email,
                             'password' => $req->password);
         //@dd($credentials);
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('users')->attempt($credentials)) {
             return redirect('/');
         }
         else {
@@ -84,7 +84,7 @@ class LoginController extends Controller
 
 
     public function logout(Request $request) {
-      Auth::logout();
+      Auth::guard('users')->logout();
       return redirect('/');
     }
 

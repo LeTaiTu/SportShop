@@ -45,7 +45,7 @@
 				<th style="text-align: center" >Tên Thành Viên</th>
 				<th style="text-align: center" >Số Điện Thoại</th>
 				<th style="text-align: center" >Email </th>
-				<th style="text-align: center" >Password</th>
+				{{-- <th style="text-align: center" >Password</th> --}}
 				<th style="text-align: center" >Ngày Tạo</th>
 				<th style="text-align: center" >Ngày Sửa</th>
                 <th style="text-align: center" colspan="2">Chức Năng</th>
@@ -60,7 +60,7 @@
 	    		<td style="text-align: center">{{$us->name}}</td>
 	    		<td style="text-align: center">{{$us->phone}}</td>
 	    		<td style="text-align: center">{{$us->email}}</td>
-	    		<td style="text-align: center">{{$us->password}}</td>
+	    		{{-- <td style="text-align: center">{{$us->password}}</td> --}}
 	    		<td style="text-align: center">{{$us->created_at}}</td>
 	    		<td style="text-align: center">{{$us->updated_at}}</td>
 	    		<td style="text-align: center"><a class="btn btn-warning" href="{{route('member.edit',$us->id)}}">Sửa</a></td>

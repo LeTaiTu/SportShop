@@ -389,6 +389,8 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
     );
 
     public static $classMap = array (
+        'AdminSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminSeeder.php',
+        'App\\Cart' => __DIR__ . '/../..' . '/app/Cart.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admins\\AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/AccountController.php',
@@ -396,6 +398,10 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
         'App\\Http\\Controllers\\Admins\\KindsportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/KindsportController.php',
         'App\\Http\\Controllers\\Admins\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/LoginController.php',
         'App\\Http\\Controllers\\Admins\\MemberController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/MemberController.php',
+<<<<<<< HEAD
+=======
+        'App\\Http\\Controllers\\Admins\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/OrderController.php',
+>>>>>>> 9e37be395d16fbef6ff44fa6fca1f19f5b0bf0f4
         'App\\Http\\Controllers\\Admins\\ProducerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/ProducerController.php',
         'App\\Http\\Controllers\\Admins\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/ProductController.php',
         'App\\Http\\Controllers\\Admins\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admins/SlideController.php',
@@ -404,6 +410,7 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -418,6 +425,8 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
         'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
         'App\\Models\\KindSport' => __DIR__ . '/../..' . '/app/Models/KindSport.php',
         'App\\Models\\Kind_sport' => __DIR__ . '/../..' . '/app/Models/Kind_sport.php',
+        'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OrderDetail' => __DIR__ . '/../..' . '/app/Models/OrderDetail.php',
         'App\\Models\\Producer' => __DIR__ . '/../..' . '/app/Models/Producer.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductDetail' => __DIR__ . '/../..' . '/app/Models/ProductDetail.php',
@@ -1995,6 +2004,7 @@ class ComposerStaticInitcca83b34a40f0674bd6ca2d8afb795ab
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'LoginSeeder' => __DIR__ . '/../..' . '/database/seeds/LoginSeeder.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',

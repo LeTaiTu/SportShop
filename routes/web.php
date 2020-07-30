@@ -10,10 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 // trang chu
-Route::get('/', function () {
-    return view('home.home');
-})->name('home');
+Route::get('/', "\App\Http\Controllers\HomeController@index")->name('home');
 
 // login trang chu -> khach hang
 Route::get('/login_user', function () {
@@ -35,38 +34,39 @@ Route::get('/change_info_user/{id}', "\App\Http\Controllers\HomeController@edit"
 Route::post('/change_info_user/{id}', "\App\Http\Controllers\HomeController@update")->name('edit_user');
 
 // menu trang khuyen mai
-Route::get('/sale', function () {
-    return view('sale');
-})->name('sale');
+Route::get('/sale', "\App\Http\Controllers\MenuController@sale")->name('sale');
 // menu trang quan ao
-Route::get('/quanao', function () {
-    return view('quanao');
-})->name('quanao');
+Route::get('/quanao', "\App\Http\Controllers\MenuController@clothes")->name('quanao');
+// menu trang giay the thao
+Route::get('/giay', "\App\Http\Controllers\MenuController@shoes")->name('giay');
 // menu trang phuchoi
-Route::get('/phuchoi', function () {
-    return view('phuchoi');
-})->name('phuchoi');
-// menu trang bong
-Route::get('/bong', function () {
-    return view('bong');
-})->name('bong');
-// menu trang chuc nang
-Route::get('/chucnang', function () {
-    return view('chucnang');
-})->name('chucnang');
-// menu trang kinh
-Route::get('/kinh', function(){
-	return view('kinh');
-})->name('kinh');
+Route::get('/thucpham', "\App\Http\Controllers\MenuController@foods")->name('thucpham');
+// menu trang phu kien
+Route::get('/phukien', "\App\Http\Controllers\MenuController@accessories")->name('phukien');
 // menu trang contact
 Route::get('/contact', function(){
 	return view('contact');
 })->name('contact');
 
+// chi tiet san pham
+    Route::get('/{id}/{size}/detail', "\App\Http\Controllers\CartController@detail")->name('detail.product');
+// them vao gio hang
+    Route::post('/{id}/{size}/detail', "\App\Http\Controllers\CartController@getAddtoCart")->name('detail.product');
+// trang dat hang
+    Route::get('/order', "\App\Http\Controllers\CartController@getOrder")->name('order.product');
+// xoa gio hang
+    Route::get('/{id}/order', "\App\Http\Controllers\CartController@getDelItemCart")->name('order.delete');
+// thanh toan -> dat hang
+    Route::get('/payment', "\App\Http\Controllers\CartController@payment")->name('payment');
+// trang nhap thong tin xac nhan order
+    Route::post('/payment',"\App\Http\Controllers\CartController@setOrder")->name('order.confirm');
+// dat hang thanh cong
+    Route::get('/order_success', "\App\Http\Controllers\CartController@successOrder")->name('order_success');
+
 // group admin
 Route::prefix('admin')->group(function() {
     // login
-	Route::get('/', "\App\Http\Controllers\Admins\LoginController@showLoginForm");
+	Route::get('/', "\App\Http\Controllers\Admins\LoginController@showLoginForm")->name('admin.login');
 	Route::post('/', "\App\Http\Controllers\Admins\LoginController@store")->name('admin');
     // logout
     Route::get('/logout', "\App\Http\Controllers\Admins\LoginController@logout")->name('admin.logout');
@@ -90,16 +90,21 @@ Route::prefix('admin')->group(function() {
     Route::get('/product', "\App\Http\Controllers\Admins\ProductController@index")->name('admin.product');
     Route::get('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
     Route::post('/product/create', "\App\Http\Controllers\Admins\ProductController@create")->name('product.create');
+
     Route::get('/product/createClothes', "\App\Http\Controllers\Admins\ProductController@createClothes")->name('product.createClothes');
     Route::get('/product/createShoes', "\App\Http\Controllers\Admins\ProductController@createShoes")->name('product.createShoes');
     Route::get('/product/createFoods', "\App\Http\Controllers\Admins\ProductController@createFoods")->name('product.createFoods');
+    Route::get('/product/createAcces', "\App\Http\Controllers\Admins\ProductController@createAcces")->name('product.createAcces');
 
     Route::post('/product/createClothes',"\App\Http\Controllers\Admins\ProductController@store")->name('product.store');
     Route::post('/product/createShoes',"\App\Http\Controllers\Admins\ProductController@storeshoes")->name('product.storeshoes');
     Route::post('/product/createFoods',"\App\Http\Controllers\Admins\ProductController@storefoods")->name('product.storefoods');
-    
+    Route::post('/product/createAcces',"\App\Http\Controllers\Admins\ProductController@storeacces")->name('product.storeacces');
+
     Route::get('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@edit")->name('product.edit');
+    Route::get('/product/editAcces',"\App\Http\Controllers\Admins\ProductController@editAcces")->name('product.editAcces');
     Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@update")->name('product.update');
+    Route::post('/product/{id}/edit',"\App\Http\Controllers\Admins\ProductController@updateacces")->name('product.updateacces');
 
     // trang kindsport
     Route::get('/kindsport',"\App\Http\Controllers\Admins\KindsportController@index")->name('admin.kindsport');
@@ -140,7 +145,20 @@ Route::prefix('admin')->group(function() {
     Route::post('/producer/create',"\App\Http\Controllers\Admins\ProducerController@store")->name('producer.store');
     Route::get('/producer/{id}/delete',"\App\Http\Controllers\Admins\ProducerController@destroy")->name('producer.delete');
     Route::get('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@edit")->name('producer.edit');
-    Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerCo  ntroller@update")->name('producer.update');
+    Route::post('/producer/{id}/edit',"\App\Http\Controllers\Admins\ProducerController@update")->name('producer.update');
+
+    // trang quan ly order san pham
+    Route::get('/orderadmin',"\App\Http\Controllers\Admins\OrderController@index")->name('admin_order');
+    Route::post('/orderadmin/search',"\App\Http\Controllers\Admins\OrderController@search")->name('order.search');
+
+    Route::post('/orderadmin/{id}',"\App\Http\Controllers\Admins\OrderController@update")->name('order.update');
+
+    Route::get('/orderadmin/{id}/show',"\App\Http\Controllers\Admins\OrderController@show")->name('show_order');
+    // trang quan ly order chi tiet san pham
+    Route::get('/orderdetail',"\App\Http\Controllers\Admins\OrderController@detail_order")->name('order.detail');
+    Route::post('/orderdetail/search',"\App\Http\Controllers\Admins\OrderController@detail_search")->name('order_detail.search');
+    
+    Route::get('/orderdetail/{id}/delete',"\App\Http\Controllers\Admins\OrderController@destroy")->name('order_detail.delete');
 });
-Auth::routes();
+
 

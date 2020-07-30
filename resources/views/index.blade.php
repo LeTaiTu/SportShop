@@ -11,7 +11,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    {{-- them thu cong --}}
+    <link rel="stylesheet" href="{{asset('asset_admin/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('asset_admin/css/font-awesome.min.css')}}">
+    {{-- <script src="{{asset('asset_admin/js/jquery.min.js')}}"></script>
+    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}"></script> --}}
+    {{-- end manual --}}
     <link rel="stylesheet" href="{{asset('asset_admin/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset_admin/css/owl.theme.default.min.css')}}">
 
@@ -41,13 +46,17 @@
                     <p style="position: absolute; left: 52px; font-size: 16px; top: 16px; font-weight: bold;">1900.1234</p>
                 </div>
                 <div class="cart">
-                    <img src="{{asset('asset_admin/images/icon-cart.png')}}" alt="">
-                    <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">88</p>
-                    <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;">Giỏ hàng</p>
+                <a href="{{route('order.product')}}"><img src="{{asset('asset_admin/images/icon-cart.png')}}" alt="">
+                    <p style="position: absolute; right: 7px; font-size: 14px; border: solid black 1px; border-radius: 15px;">@if(Session::has('cart')){{Session('cart')->totalQty}}
+                                @else 0
+                                @endif</p>
+                    <p style="position: absolute; left: 52px; font-size: 16px; top: 9px; font-weight: bold;color: black">Giỏ hàng</p>
+                </a>
+                
                 </div>
-                @if(Auth::check())
+                @if(Auth::guard('users')->check())
                     
-                    <a class="login" href="{{route('change_user',Auth::user()->id)}}" style="text-decoration: none;top: 16px;right: 15px;">Xin Chào {{Auth::user()->name}} </a>
+                    <a class="login" href="{{route('change_user',Auth::guard('users')->user()->id)}}" style="text-decoration: none;top: 16px;right: 15px;">Xin Chào {{Auth::guard('users')->user()->name}} </a>
                     <div>
                         <a class="login" href="{{route('logout')}}" style="text-decoration: none; top: 43px;right: 15px;"> Đăng Xuất</a>
                     </div>
@@ -70,6 +79,7 @@
                     <ul>
                        {{--  <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
                         <li><a href="{{route('sale')}}"> KHUYẾN MÃI</a></li>
+<<<<<<< HEAD
                         <li><a href="{{route('quanao')}}"> QUẦN ÁO , GIẦY</a></li>
                         <li><a href="{{route('phuchoi')}}"> THỰC PHẨM PHỤC HỒI</a></li>
                         <li><a href="{{route('bong')}}"> BÓNG</a></li>
@@ -82,6 +92,12 @@
                         <li><a href=""> THƠ CA</a></li>
                         <li><a href=""> TIỂU THUYẾT</a></li>
                         <li><a href=""> TRUYỆN CƯỜI</a></li>
+=======
+                        <li><a href="{{route('quanao')}}"> QUẦN ÁO</a></li>
+                        <li><a href="{{route('giay')}}"> GIẦY THỂ THAO</a></li>
+                        <li><a href="{{route('thucpham')}}"> THỰC PHẨM BỔ SUNG</a></li>
+                        <li><a href="{{route('phukien')}}"> PHỤ KIỆN THỂ THAO</a></li>
+>>>>>>> 9e37be395d16fbef6ff44fa6fca1f19f5b0bf0f4
                         <li><a href="{{route('contact')}}">LIÊN HỆ</a></li>
                     </ul>
                 </div>
@@ -146,7 +162,8 @@
     </footer>
     <script src="{{asset('asset_admin/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('asset_admin/js/app.js')}}"></script>
-    
+    {{-- <script src="{{asset('asset_admin/js/jquery.min.js')}}"></script>
+    <script src="{{asset('asset_admin/js/bootstrap.min.js')}}"></script> --}}
 </body>
 
 </html>
