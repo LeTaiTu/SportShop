@@ -154,16 +154,18 @@ public function createFoods(){
     $product->image = $image;
     $product->save();
         // $product_id = $product->id;
-
-    for ($i=0; $i < count($sizes); $i++) { 
-        $prDetails = new ProductDetail;
-        $prDetails->product_id = $product->id;
-        $prDetails->size = $sizes[$i];
-        $prDetails->quantity = $quantities[$i];
-        $prDetails->original_price = $request->input('original_price');
-        $prDetails->sell_price = $request->input('sell_price');
-        $prDetails->save();
+    if(isset($size) && count($size)>0) {
+        for ($i=0; $i < count($sizes); $i++) { 
+            $prDetails = new ProductDetail;
+            $prDetails->product_id = $product->id;
+            $prDetails->size = $sizes[$i];
+            $prDetails->quantity = $quantities[$i];
+            $prDetails->original_price = $request->input('original_price');
+            $prDetails->sell_price = $request->input('sell_price');
+            $prDetails->save();
+        }
     }
+    
     session()->forget('kind');
     return redirect('admin/product')->with('success', "Thêm mới thành công");
 }

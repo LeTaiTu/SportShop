@@ -38,7 +38,7 @@
 				@endif
 				@endif
 				@empty
-				"Trống";
+				
 				@endforelse
 			</td>
 			<td>
@@ -48,7 +48,7 @@
 				<br>
 				@endif
 				@empty
-				"Trống";
+				
 				@endforelse
 			</td>
 			<td>
@@ -58,7 +58,7 @@
 				<br>
 				@endif
 				@empty
-				"Trống";
+				
 				@endforelse
 			</td>
 			<td>
@@ -68,7 +68,7 @@
 				<br>
 				@endif
 				@empty
-				"Trống";
+				
 				@endforelse
 			</td>
 			{{-- @empty --}}

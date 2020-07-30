@@ -68,13 +68,20 @@
             <div class="container top2">
                 <div id="myNavbar" class="row">
                     <ul>
-                        <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
+                       {{--  <li class="active_header"><a href="{{route('home')}}"><img src="{{asset('asset_admin/images/icon-home.png')}}" alt=""> TRANG CHỦ</a></li>
                         <li><a href="{{route('sale')}}"> KHUYẾN MÃI</a></li>
                         <li><a href="{{route('quanao')}}"> QUẦN ÁO , GIẦY</a></li>
                         <li><a href="{{route('phuchoi')}}"> THỰC PHẨM PHỤC HỒI</a></li>
                         <li><a href="{{route('bong')}}"> BÓNG</a></li>
                         <li><a href="{{route('chucnang')}}"> THỰC PHẨM CHỨC NĂNG</a></li>
                         <li><a href="{{route('kinh')}}"> KÍNH BƠI</a></li>
+                        <li><a href="{{route('contact')}}">LIÊN HỆ</a></li> --}}
+                        <li class="active_header"><a href=""><img src="images/icon-home.png" alt=""> TRANG CHỦ</a></li>
+                        <li><a href=""> KHUYẾN MÃI</a></li>
+                        <li><a href=""> TRUYỆN THIẾU NHI</a></li>
+                        <li><a href=""> THƠ CA</a></li>
+                        <li><a href=""> TIỂU THUYẾT</a></li>
+                        <li><a href=""> TRUYỆN CƯỜI</a></li>
                         <li><a href="{{route('contact')}}">LIÊN HỆ</a></li>
                     </ul>
                 </div>

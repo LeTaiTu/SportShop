@@ -55,11 +55,12 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-
+        //dd($request->all());
         $username = $request->username;
         $password = $request->password;
         $admin = Admin::get();
         foreach ($admin as $key => $value) {
+
             $user_data = $value->username;
             $pass_data = $value->password;
             $id_admin = $value->id;
@@ -67,12 +68,15 @@ class LoginController extends Controller
             $name_admin = $value->name;
             //session('name_admin') = $name_admin;
             $image_admin = $value->image;
+             //dd(12);
             if (($username == $user_data) && ($password == $pass_data)) {
+                //dd(12);
                 session(['name_admin' => $name_admin]);
                 session(['id_admin' => $id_admin]);
                 session(['image_admin' => $image_admin]);
                 return view('admin.home', compact('id_admin','name_admin', 'image_admin'));
             }
+            //dd(34);
         }
         return view('admin.login');
     }
